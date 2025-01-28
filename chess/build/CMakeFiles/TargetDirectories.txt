@@ -1,0 +1,3 @@
+/home/sardiness/Desktop/projects/chess/build/CMakeFiles/OpenGLProject.dir
+/home/sardiness/Desktop/projects/chess/build/CMakeFiles/edit_cache.dir
+/home/sardiness/Desktop/projects/chess/build/CMakeFiles/rebuild_cache.dir
