@@ -129,6 +129,45 @@ OpenGLProject/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLProject.dir/build.make CMakeFiles/OpenGLProject.dir/build
 .PHONY : OpenGLProject/fast
 
+#=============================================================================
+# Target rules for targets named test_chess
+
+# Build rule for target.
+test_chess: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_chess
+.PHONY : test_chess
+
+# fast build rule for target.
+test_chess/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_chess.dir/build.make CMakeFiles/test_chess.dir/build
+.PHONY : test_chess/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) $(MAKESILENT) -f include/gtest/googletest/CMakeFiles/gtest.dir/build.make include/gtest/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) $(MAKESILENT) -f include/gtest/googletest/CMakeFiles/gtest_main.dir/build.make include/gtest/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
 include/glad/glad.o: include/glad/glad.c.o
 .PHONY : include/glad/glad.o
 
@@ -177,6 +216,54 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLProject.dir/build.make CMakeFiles/OpenGLProject.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+stb_impl.o: stb_impl.cpp.o
+.PHONY : stb_impl.o
+
+# target to build an object file
+stb_impl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLProject.dir/build.make CMakeFiles/OpenGLProject.dir/stb_impl.cpp.o
+.PHONY : stb_impl.cpp.o
+
+stb_impl.i: stb_impl.cpp.i
+.PHONY : stb_impl.i
+
+# target to preprocess a source file
+stb_impl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLProject.dir/build.make CMakeFiles/OpenGLProject.dir/stb_impl.cpp.i
+.PHONY : stb_impl.cpp.i
+
+stb_impl.s: stb_impl.cpp.s
+.PHONY : stb_impl.s
+
+# target to generate assembly for a file
+stb_impl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLProject.dir/build.make CMakeFiles/OpenGLProject.dir/stb_impl.cpp.s
+.PHONY : stb_impl.cpp.s
+
+test.o: test.cpp.o
+.PHONY : test.o
+
+# target to build an object file
+test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_chess.dir/build.make CMakeFiles/test_chess.dir/test.cpp.o
+.PHONY : test.cpp.o
+
+test.i: test.cpp.i
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_chess.dir/build.make CMakeFiles/test_chess.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_chess.dir/build.make CMakeFiles/test_chess.dir/test.cpp.s
+.PHONY : test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +273,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... OpenGLProject"
+	@echo "... gtest"
+	@echo "... gtest_main"
+	@echo "... test_chess"
 	@echo "... include/glad/glad.o"
 	@echo "... include/glad/glad.i"
 	@echo "... include/glad/glad.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... stb_impl.o"
+	@echo "... stb_impl.i"
+	@echo "... stb_impl.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 

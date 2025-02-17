@@ -1,32 +1,41 @@
+#define DEV_MODE false
+#define WIDTH 800
+#define HEIGHT 600
+
 //gl
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 //libs
+//gui API
 #include "glcontrol.h"
-#include "lib/utils.h"
-#include "lib/consts.h"
+#include "lib/utils/glutils.h"
+#include "lib/shaders.h"
 #include "lib/shaders.h"
 #include "lib/_render.h"
+#include "lib/stb_image.h"
+//engine
+#include "lib/_enginemain.h"
 //standard
 #include <vector>
 
 
 
 const float BG_COLOR[] = {0.0, 0.0, 0.0};
-const int WIDTH = 800;
-const int HEIGHT = 600;
 const char* TITLE = "Chess MasterGL";
-
 
 
 // Single cell vertex data (normalized square)
 std::vector<float> cellVertices = {
-    // positions
-    -0.5f, -0.5f, 0.0f,  // bottom left
-     0.5f, -0.5f, 0.0f,  // bottom right
-     0.5f,  0.5f, 0.0f,  // top right
-    -0.5f,  0.5f, 0.0f   // top left
+    // positions             //tex coords
+    // bottom left 
+    -0.49f, -0.49f, 0.0f,     0.0f, 0.0f,
+    // bottom right
+     0.49f, -0.49f, 0.0f,     1.0f, 0.0f, 
+    // top right
+    0.49f,  0.49f, 0.0f,     1.0f, 1.0f,
+    // top left
+    -0.49f,  0.49f, 0.0f,     0.0f, 1.0f
 };
 
 // Indices for drawing squares with triangles
@@ -46,34 +55,62 @@ void generateGridPositions() {
 }
 
 
-int game(){
-    GLFWwindow* window = init(WIDTH, HEIGHT, TITLE);
-    if(window == nullptr) return -1;
-    glViewport(0, 0, WIDTH, HEIGHT);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-    //> Vertex, Shader & objects
-    Shader shader = Shader(vertexShaderSource, fragmentShaderSource);
-    generateGridPositions();
-    unsigned int VBO, instanceVBO, EBO, VAO;
-    setVertexAttributes(VBO, instanceVBO, EBO, VAO, cellVertices, indices, gridPositions);
-    RenderBoard board(VAO, shader);
 
-    // > Event loop
+void eventLoop(GLFWwindow *window, RenderBoard &board, RenderPieces &pieces){
     while(!glfwWindowShouldClose(window)){
         glClearColor(BG_COLOR[0], BG_COLOR[1], BG_COLOR[2], 0.2f);
         glClear(GL_COLOR_BUFFER_BIT);
-
-        // Update aspect ratio if window is resized
+        //resize handler
         board.updateAspectRatio();
-        
-        // Render chess board
+        pieces.updateAspectRatio();
+        //> game objects render
+        //main game code ================================================
         board.render();
+        //piece render (map piece set)
+        for(int rank=8; rank>=1; rank--){
+            for(int file=65; file<= 72; file++){
+                char pieceKey = mainboard.getPiece((char)file, rank);
+                if(pieceKey != 'E')
+                    pieces.render(pieceKey, (char)file, rank);
+            }
+        }
+        // ================================================
 
         // Swap buffers and poll events
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+}
+
+
+
+
+int gameStart(){
+    if(DEV_MODE)
+        return chessEngine();
+        
+    GLFWwindow* window = init(TITLE);
+    if(window == nullptr) return -1;
+    glViewport(0, 0, WIDTH, HEIGHT);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+    //> Vertex, Shader & objects
+    // Board setup
+    Shader boardShader = Shader(boardVertexShader, boardFragmentShader);
+    generateGridPositions();
+    unsigned int VBO, instanceVBO, EBO, VAO;
+    setVertexAttributes(VBO, instanceVBO, EBO, VAO, cellVertices, indices, gridPositions);
+    RenderBoard board(VAO, boardShader);
+
+    // Piece setup
+    Shader pieceShader = Shader(pieceVertexShader, pieceFragmentShader);
+    loadPieceTextures();  // Load all piece textures
+    RenderPieces pieces(VAO, pieceShader);
+
+    //>Game loop & Init.
+    initializeBoard();
+    eventLoop(window, board, pieces);
 
     //Clear memory
     glDeleteVertexArrays(1, &VAO);
@@ -83,6 +120,3 @@ int game(){
 
     return 0;
 }
-
-
-

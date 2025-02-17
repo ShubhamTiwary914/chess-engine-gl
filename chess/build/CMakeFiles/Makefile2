@@ -64,15 +64,36 @@ CMAKE_BINARY_DIR = /home/sardiness/Desktop/projects/chess/build
 
 # The main recursive "all" target.
 all: CMakeFiles/OpenGLProject.dir/all
+all: CMakeFiles/test_chess.dir/all
+all: include/gtest/googletest/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: include/gtest/googletest/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/OpenGLProject.dir/clean
+clean: CMakeFiles/test_chess.dir/clean
+clean: include/gtest/googletest/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory include/gtest/googletest
+
+# Recursive "all" directory target.
+include/gtest/googletest/all: include/gtest/googletest/CMakeFiles/gtest.dir/all
+include/gtest/googletest/all: include/gtest/googletest/CMakeFiles/gtest_main.dir/all
+.PHONY : include/gtest/googletest/all
+
+# Recursive "preinstall" directory target.
+include/gtest/googletest/preinstall:
+.PHONY : include/gtest/googletest/preinstall
+
+# Recursive "clean" directory target.
+include/gtest/googletest/clean: include/gtest/googletest/CMakeFiles/gtest.dir/clean
+include/gtest/googletest/clean: include/gtest/googletest/CMakeFiles/gtest_main.dir/clean
+.PHONY : include/gtest/googletest/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/OpenGLProject.dir
@@ -81,12 +102,12 @@ clean: CMakeFiles/OpenGLProject.dir/clean
 CMakeFiles/OpenGLProject.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLProject.dir/build.make CMakeFiles/OpenGLProject.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLProject.dir/build.make CMakeFiles/OpenGLProject.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sardiness/Desktop/projects/chess/build/CMakeFiles --progress-num=1,2,3 "Built target OpenGLProject"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sardiness/Desktop/projects/chess/build/CMakeFiles --progress-num=1,2,3,4 "Built target OpenGLProject"
 .PHONY : CMakeFiles/OpenGLProject.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/OpenGLProject.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/OpenGLProject.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 0
 .PHONY : CMakeFiles/OpenGLProject.dir/rule
@@ -99,6 +120,85 @@ OpenGLProject: CMakeFiles/OpenGLProject.dir/rule
 CMakeFiles/OpenGLProject.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLProject.dir/build.make CMakeFiles/OpenGLProject.dir/clean
 .PHONY : CMakeFiles/OpenGLProject.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_chess.dir
+
+# All Build rule for target.
+CMakeFiles/test_chess.dir/all: include/gtest/googletest/CMakeFiles/gtest.dir/all
+CMakeFiles/test_chess.dir/all: include/gtest/googletest/CMakeFiles/gtest_main.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_chess.dir/build.make CMakeFiles/test_chess.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_chess.dir/build.make CMakeFiles/test_chess.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sardiness/Desktop/projects/chess/build/CMakeFiles --progress-num=9,10 "Built target test_chess"
+.PHONY : CMakeFiles/test_chess.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_chess.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_chess.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_chess.dir/rule
+
+# Convenience name for target.
+test_chess: CMakeFiles/test_chess.dir/rule
+.PHONY : test_chess
+
+# clean rule for target.
+CMakeFiles/test_chess.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_chess.dir/build.make CMakeFiles/test_chess.dir/clean
+.PHONY : CMakeFiles/test_chess.dir/clean
+
+#=============================================================================
+# Target rules for target include/gtest/googletest/CMakeFiles/gtest.dir
+
+# All Build rule for target.
+include/gtest/googletest/CMakeFiles/gtest.dir/all:
+	$(MAKE) $(MAKESILENT) -f include/gtest/googletest/CMakeFiles/gtest.dir/build.make include/gtest/googletest/CMakeFiles/gtest.dir/depend
+	$(MAKE) $(MAKESILENT) -f include/gtest/googletest/CMakeFiles/gtest.dir/build.make include/gtest/googletest/CMakeFiles/gtest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sardiness/Desktop/projects/chess/build/CMakeFiles --progress-num=5,6 "Built target gtest"
+.PHONY : include/gtest/googletest/CMakeFiles/gtest.dir/all
+
+# Build rule for subdir invocation for target.
+include/gtest/googletest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 include/gtest/googletest/CMakeFiles/gtest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 0
+.PHONY : include/gtest/googletest/CMakeFiles/gtest.dir/rule
+
+# Convenience name for target.
+gtest: include/gtest/googletest/CMakeFiles/gtest.dir/rule
+.PHONY : gtest
+
+# clean rule for target.
+include/gtest/googletest/CMakeFiles/gtest.dir/clean:
+	$(MAKE) $(MAKESILENT) -f include/gtest/googletest/CMakeFiles/gtest.dir/build.make include/gtest/googletest/CMakeFiles/gtest.dir/clean
+.PHONY : include/gtest/googletest/CMakeFiles/gtest.dir/clean
+
+#=============================================================================
+# Target rules for target include/gtest/googletest/CMakeFiles/gtest_main.dir
+
+# All Build rule for target.
+include/gtest/googletest/CMakeFiles/gtest_main.dir/all: include/gtest/googletest/CMakeFiles/gtest.dir/all
+	$(MAKE) $(MAKESILENT) -f include/gtest/googletest/CMakeFiles/gtest_main.dir/build.make include/gtest/googletest/CMakeFiles/gtest_main.dir/depend
+	$(MAKE) $(MAKESILENT) -f include/gtest/googletest/CMakeFiles/gtest_main.dir/build.make include/gtest/googletest/CMakeFiles/gtest_main.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sardiness/Desktop/projects/chess/build/CMakeFiles --progress-num=7,8 "Built target gtest_main"
+.PHONY : include/gtest/googletest/CMakeFiles/gtest_main.dir/all
+
+# Build rule for subdir invocation for target.
+include/gtest/googletest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 include/gtest/googletest/CMakeFiles/gtest_main.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sardiness/Desktop/projects/chess/build/CMakeFiles 0
+.PHONY : include/gtest/googletest/CMakeFiles/gtest_main.dir/rule
+
+# Convenience name for target.
+gtest_main: include/gtest/googletest/CMakeFiles/gtest_main.dir/rule
+.PHONY : gtest_main
+
+# clean rule for target.
+include/gtest/googletest/CMakeFiles/gtest_main.dir/clean:
+	$(MAKE) $(MAKESILENT) -f include/gtest/googletest/CMakeFiles/gtest_main.dir/build.make include/gtest/googletest/CMakeFiles/gtest_main.dir/clean
+.PHONY : include/gtest/googletest/CMakeFiles/gtest_main.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

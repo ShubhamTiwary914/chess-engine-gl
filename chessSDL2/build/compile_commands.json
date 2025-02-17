@@ -1,0 +1,67 @@
+[
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess_lib.dir/src/engine/boards.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/engine/boards.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/engine/boards.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess_lib.dir/src/engine/moves.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/engine/moves.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/engine/moves.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/app/_engine.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/app/_engine.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/app/_gui.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/app/_gui.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/app/gamemain.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/app/gamemain.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/utils/consts.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/utils/consts.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/utils/engine.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/utils/engine.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/utils/gui.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/utils/gui.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/include/SDL2 -I/home/sardiness/Desktop/projects/chessSDL2/include -I/home/sardiness/Desktop/projects/chessSDL2 -isystem /usr/local/include/SDL2 -g -std=gnu++17 -o CMakeFiles/chess.dir/main.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/main.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/main.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -isystem /home/sardiness/Desktop/projects/chessSDL2/include/googletest/include -isystem /home/sardiness/Desktop/projects/chessSDL2/include/googletest -g -std=gnu++17 -o CMakeFiles/chess_test.dir/src/test/force.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/test/force.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/test/force.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/src -I/usr/local/include/SDL2 -I/usr/include/SDL2 -isystem /home/sardiness/Desktop/projects/chessSDL2/include/googletest/include -isystem /home/sardiness/Desktop/projects/chessSDL2/include/googletest -g -std=gnu++17 -o CMakeFiles/chess_test.dir/src/test/initialize.cpp.o -c /home/sardiness/Desktop/projects/chessSDL2/src/test/initialize.cpp",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/src/test/initialize.cpp"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -I/home/sardiness/Desktop/projects/chessSDL2/include/googletest/include -I/home/sardiness/Desktop/projects/chessSDL2/include/googletest -g -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=gnu++17 -o include/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/sardiness/Desktop/projects/chessSDL2/include/googletest/src/gtest-all.cc",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/include/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/home/sardiness/Desktop/projects/chessSDL2/build",
+  "command": "/usr/bin/g++ -isystem /home/sardiness/Desktop/projects/chessSDL2/include/googletest/include -isystem /home/sardiness/Desktop/projects/chessSDL2/include/googletest -g -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=gnu++17 -o include/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/sardiness/Desktop/projects/chessSDL2/include/googletest/src/gtest_main.cc",
+  "file": "/home/sardiness/Desktop/projects/chessSDL2/include/googletest/src/gtest_main.cc"
+}
+]

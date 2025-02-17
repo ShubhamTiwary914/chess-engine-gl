@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/sardiness/Desktop/projects/chess/include/glad/glad.c" "CMakeFiles/OpenGLProject.dir/include/glad/glad.c.o" "gcc" "CMakeFiles/OpenGLProject.dir/include/glad/glad.c.o.d"
   "/home/sardiness/Desktop/projects/chess/main.cpp" "CMakeFiles/OpenGLProject.dir/main.cpp.o" "gcc" "CMakeFiles/OpenGLProject.dir/main.cpp.o.d"
+  "/home/sardiness/Desktop/projects/chess/stb_impl.cpp" "CMakeFiles/OpenGLProject.dir/stb_impl.cpp.o" "gcc" "CMakeFiles/OpenGLProject.dir/stb_impl.cpp.o.d"
   )
 
 # Targets to which this target links.

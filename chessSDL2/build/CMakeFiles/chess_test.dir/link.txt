@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/chess_test.dir/src/test/initialize.cpp.o -o chess_test  libchess_lib.a lib/libgtest.a lib/libgtest_main.a lib/libgtest.a 

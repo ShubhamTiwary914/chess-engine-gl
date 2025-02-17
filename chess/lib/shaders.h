@@ -9,6 +9,91 @@
 #include <sstream>
 #include <string>
 
+
+//> Render Board Shader
+const char* boardVertexShader = R"(
+    #version 330 core
+    layout (location = 0) in vec3 aPos;
+    layout (location = 1) in vec2 aTexCoords;
+    layout (location = 2) in vec2 aOffset;
+    
+    uniform float aspectRatio;
+    flat out vec2 gridPos;
+    
+    void main() {
+        gridPos = aOffset;
+        
+        // Convert 8x8 grid coordinates to [-1,1] range
+        float x = (aOffset.x + aPos.x) / 4.0 - 1.0;
+        float y = (aOffset.y + aPos.y) / 4.0 - 1.0;
+        
+        y = y + 0.11;
+        x = x / aspectRatio;
+        gl_Position = vec4(x, y, 0.0, 1.0);
+    }
+)";
+
+const char* boardFragmentShader = R"(
+    #version 330 core
+    out vec4 FragColor;
+    flat in vec2 gridPos;
+    
+    void main() {
+        // black/white cell checker
+        int row = int(gridPos.y);
+        int col = int(gridPos.x);
+        bool isWhite = ((row + col) % 2) == 0;
+        
+        vec3 whiteColor = vec3(0.93, 0.93, 0.82);
+        vec3 blackColor = vec3(0.45, 0.32, 0.22);
+        FragColor = vec4(isWhite ? whiteColor : blackColor, 1.0);
+    }
+)";
+
+
+//> Pieces Shader
+const char* pieceVertexShader = R"(
+    #version 330 core
+    layout (location = 0) in vec3 aPos;
+    layout (location = 1) in vec2 aTexCoords;
+    
+    out vec2 TexCoords;
+    uniform float aspectRatio;
+    uniform vec2 pieceOffset;
+    uniform bool flipTexture;
+    
+    void main() {
+        // Flip texture coordinates in Y if needed
+        TexCoords = flipTexture ? vec2(aTexCoords.x, 1.0 - aTexCoords.y) : aTexCoords;
+        
+        // Convert grid coordinates to [-1,1] range
+        float x = (pieceOffset.x + aPos.x) / 4.0 - 1.0;
+        float y = (pieceOffset.y + aPos.y) / 4.0 - 1.0;
+        
+        y = y + 0.11;
+        x = x / aspectRatio;
+        gl_Position = vec4(x, y, 0.0, 1.0);
+    }
+)";
+
+const char* pieceFragmentShader = R"(
+    #version 330 core
+    out vec4 FragColor;
+    in vec2 TexCoords;
+    
+    uniform sampler2D texture1;
+    
+    void main() {
+        vec4 texColor = texture(texture1, TexCoords);
+        if(texColor.a < 0.1) // Discard transparent pixels
+            discard;
+        FragColor = texColor;
+    }
+)";
+
+
+
+
 class Shader {
 public:
     unsigned int programID;
@@ -84,6 +169,17 @@ public:
         glUniform4f(vertexLocation, v1, v2, v3, v4);
     }
 
+    // Add this method for vec2 uniforms
+    void setVec2(const std::string &name, glm::vec2 value) const
+    { 
+        glUniform2f(glGetUniformLocation(programID, name.c_str()), value.x, value.y);
+    }
+    
+    // Alternative overload that takes individual components
+    void setVec2(const std::string &name, float x, float y) const
+    { 
+        glUniform2f(glGetUniformLocation(programID, name.c_str()), x, y);
+    }
 
     private:
         void checkCompileErrors(unsigned int shader, std::string type) {
