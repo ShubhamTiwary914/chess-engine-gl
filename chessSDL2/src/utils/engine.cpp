@@ -6,15 +6,33 @@ void println(){
     std::cout << std::endl;
 }
 
+std::string itoa(int val, int base){
+  std::string res = "";
+  assert(base >= 2 && base <= 36);
+  //neg-val for base-10 only
+  bool isNeg = (val < 0 && base == 10);
+  val = (isNeg) ? -val : val;
 
-template<typename... Args>
-std::string format(const std::string& fmt, Args... args) {
-    int size = snprintf(nullptr, 0, fmt.c_str(), args...) + 1; //+1: null (/0) terminator
-    if (size <= 0) { return ""; }
-    std::vector<char> buf(size);
-    snprintf(buf.data(), size, fmt.c_str(), args...);
-    return std::string(buf.data(), buf.data() + size - 1);
+  do{
+    int digit = val % base;
+    res = (digit > 9) ? ((char)('A' + digit - 10) + res) : ((char)('0' + digit) + res);
+    val /= base;
+  }while(val);
+  //add neg-val symbol back + null-end
+  if(isNeg) res = '-' + res;
+  res += '\0';
+  return res;
 }
+
+
+// template<typename... Args>
+// std::string format(const std::string& fmt, Args... args) {
+//     int size = snprintf(nullptr, 0, fmt.c_str(), args...) + 1; //+1: null (/0) terminator
+//     if (size <= 0) { return ""; }
+//     std::vector<char> buf(size);
+//     snprintf(buf.data(), size, fmt.c_str(), args...);
+//     return std::string(buf.data(), buf.data() + size - 1);
+// }
 
 
 uint64_t generateRandomU64(uint64_t seed = std::random_device{}()) {
@@ -32,8 +50,6 @@ double execPerft(const std::function<void()> &func, int precision=2){
   double factor = std::pow(10, precision);
   return std::round(timer.count()*factor)/factor; 
 }
-
-
 
 
 
@@ -164,10 +180,12 @@ std::string get64Bits(uint64_t num){
 }
 
 
+
 //get 64 bit as 8x8 representation (bitboard form)
 void printBitBoard(u_int64_t testboard){
     std::string bits = "";
     for(int rank=8; rank>=1; rank--){
+        bits += itoa(rank, 10) + "   ";
         for(int file=65; file<= 72; file++){
             int bitIndex = getPieceBitIndex(file, rank);
             if(getBit(testboard, bitIndex)){
@@ -178,5 +196,6 @@ void printBitBoard(u_int64_t testboard){
         }
         bits += "\n";
     }
+    bits += "\n    a b c d e f g h";
     std::cout << bits;
 } 

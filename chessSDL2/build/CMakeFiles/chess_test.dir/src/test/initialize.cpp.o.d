@@ -432,4 +432,7 @@ CMakeFiles/chess_test.dir/src/test/initialize.cpp.o: \
  /home/sardiness/Desktop/projects/chessSDL2/src/utils/consts.h \
  /home/sardiness/Desktop/projects/chessSDL2/src/engine/moves.h \
  /home/sardiness/Desktop/projects/chessSDL2/src/engine/boards.h \
+ /home/sardiness/Desktop/projects/chessSDL2/src/app/_engine.h \
+ /usr/include/c++/11/cstring \
+ /home/sardiness/Desktop/projects/chessSDL2/src/utils/gui.h \
  /home/sardiness/Desktop/projects/chessSDL2/src/test/./force.cpp

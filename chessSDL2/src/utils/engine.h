@@ -1,6 +1,7 @@
 #ifndef GAMEUTILS_H
 #define GAMEUTILS_H
 
+
 #include <cassert>
 #include <iostream>
 #include <random>
@@ -16,8 +17,7 @@
 
 int getPieceBitIndex(char file, int rank);
 void println();
-template<typename... Args>
-std::string format(const std::string& fmt, Args... args);
+std::string itoa(int value, int base);
 uint64_t generateRandomU64(uint64_t seed);
 double execPerft(const std::function<void()> &func, int precision);
 

@@ -2,13 +2,22 @@
 #include <utils/engine.h>
 #include <utils/consts.h>
 #include <engine/moves.h>
+#include <app/_engine.h>
 #include <cassert>
 #include "./force.cpp"
 
 
 void check();
 
-//>utils
+
+
+
+/****************************************\
+
+    Utils: bitwise, engine
+
+\*****************************************/
+
 //*Rank Mask
 TEST(Utils, RankMask){
     for(int rank=1; rank<=8; rank++){
@@ -55,8 +64,24 @@ TEST(Utils, EdgesMask){
 
 
 
-//>Moves
+/****************************************\
 
+        Moves for pieces
+
+\*****************************************/
+
+
+
+
+
+
+
+
+void printFancy(uint64_t board, std::string title){
+    std::cout << "\n--------" + title + " --------\n";
+    printBitBoard(board);
+    std::cout << std::endl;
+}
 
 
 
@@ -67,35 +92,25 @@ int main(int argc, char **argv) {
     return RUN_ALL_TESTS();
 }
 
-
-
-
-uint64_t getRookMask(char file, int rank) {
-    uint64_t mask = 0ULL;
-    int square = getPieceBitIndex(file, rank);
-    
-    // Add rank bits
-    for (char f = 'a'; f <= 'h'; f++) {
-        if (f != file) {  // Exclude the piece's square
-            setBit(mask, getPieceBitIndex(f, rank));
-        }
-    }
-    
-    // Add file bits
-    for (int r = 1; r <= 8; r++) {
-        if (r != rank) {  // Exclude the piece's square
-            setBit(mask, getPieceBitIndex(file, r));
-        }
-    }
-    
-    // Remove edges
-    mask &= ~getEdgesMask();
-    return mask;
-}
-
-
 void check() {
     std::cout << "\n\n";
-    printBitBoard(getRookMask('c', 4));
+
+
+    char file = 'a';
+    int rank = 3;
+
+
+    //D3 rook
+    uint64_t d3rook = getRookMoves(file, rank);
+    printFancy(d3rook, "A3");
+
+
+    //Blockers
+    std::vector<uint64_t> blockers = generateBlockerConfigurations(d3rook);
+    printFancy(blockers[100], "Blocker[100]");
+
+    printFancy(getRookAttacks(file, rank, blockers[100]), "A3 attacks");
+
+
     std::cout << "\n\n";
 }

@@ -518,8 +518,13 @@ CMakeFiles/chess_test.dir/src/test/initialize.cpp.o: ../src/test/initialize.cpp 
   ../src/utils/consts.h \
   ../src/engine/moves.h \
   ../src/engine/boards.h \
+  ../src/app/_engine.h \
+  /usr/include/c++/11/cstring \
+  ../src/utils/gui.h \
   ../src/test/force.cpp
 
+
+../src/app/_engine.h:
 
 ../src/engine/moves.h:
 
@@ -1022,6 +1027,8 @@ CMakeFiles/chess_test.dir/src/test/initialize.cpp.o: ../src/test/initialize.cpp 
 /usr/include/c++/11/bits/stl_tree.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/c++/11/cstring:
 
 /usr/include/math.h:
 
