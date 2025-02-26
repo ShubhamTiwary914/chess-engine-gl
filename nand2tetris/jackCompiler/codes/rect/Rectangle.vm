@@ -1,0 +1,26 @@
+function Rectangle.new 0
+    push constant 2
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push pointer 0
+    return
+function Rectangle.getArea 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push this 1
+    call Math.multiply 2
+    return
+function Rectangle.getPerimeter 0
+    push argument 0
+    pop pointer 0
+    push constant 2
+    push this 0
+    push this 1
+    add
+    call Math.multiply 2
+    return

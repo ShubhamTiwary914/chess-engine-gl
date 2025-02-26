@@ -1,0 +1,81 @@
+=============
+IN BUILT TYPES ============================
+==============
+
+// Creation/Disposal
+String.new(int maxLength) -> String       // Creates string with max length
+String.dispose() -> void                  // Frees memory
+
+// Methods
+String.length() -> int                    // Returns current length
+String.charAt(int i) -> char             // Returns character at index i
+String.setCharAt(int i, char c) -> void  // Sets character at index i
+String.appendChar(char c) -> void        // Adds char at end of string
+String.eraseLastChar() -> void           // Removes last character
+String.intValue() -> int                 // Converts string to integer
+String.setInt(int i) -> void            // Sets string to integer value
+
+
+// Creation/Disposal
+Array.new(int length) -> Array           // Creates array of given length
+Array.dispose() -> void                  // Frees memory
+
+
+
+=============
+OS CLASSES ============================
+==============
+Math.multiply(int x, int y) -> int       // Returns x * y
+Math.divide(int x, int y) -> int        // Returns x / y
+Math.min(int x, int y) -> int          // Returns smaller value
+Math.max(int x, int y) -> int          // Returns larger value
+Math.sqrt(int x) -> int                // Returns square root
+Math.abs(int x) -> int                 // Returns absolute value
+
+
+
+
+Output.moveCursor(int i, int j) -> void  // Moves cursor to row i, column j
+Output.printChar(char c) -> void         // Prints character
+Output.printString(String s) -> void     // Prints string
+Output.printInt(int i) -> void          // Prints integer
+Output.println() -> void                 // Prints newline
+Output.backSpace() -> void               // Moves cursor back one position
+
+
+
+
+Screen.clearScreen() -> void             // Clears entire screen
+Screen.setColor(boolean b) -> void       // true=black, false=white
+Screen.drawPixel(int x, int y) -> void   // Draws pixel at (x,y)
+Screen.drawLine(int x1, int y1, 
+                int x2, int y2) -> void   // Draws line from (x1,y1) to (x2,y2)
+Screen.drawRectangle(int x1, int y1, 
+                     int x2, int y2) -> void // Draws rectangle
+Screen.drawCircle(int x, int y, 
+                  int r) -> void          // Draws circle center(x,y), radius r
+
+
+
+
+Keyboard.keyPressed() -> char            // Returns currently pressed key (0 if none)
+Keyboard.readChar() -> char              // Waits for and returns next char
+Keyboard.readLine(String message) -> String // Displays message, reads until newline
+Keyboard.readInt(String message) -> int    // Displays message, reads integer
+
+
+
+
+
+Memory.peek(int address) -> int          // Returns value at address
+Memory.poke(int address, int value) -> void // Sets value at address
+Memory.alloc(int size) -> Array          // Allocates memory block
+Memory.deAlloc(Array object) -> void     // Deallocates memory block
+
+
+
+
+Sys.halt() -> void                       // Halts program execution
+Sys.error(int errorCode) -> void         // Displays error code and halts
+Sys.wait(int duration) -> void           // Waits for duration milliseconds
+

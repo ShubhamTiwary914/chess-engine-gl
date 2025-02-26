@@ -1,0 +1,35 @@
+class Main { 
+    function void main() {
+        var String res;
+        var int num;
+
+        //event loop
+	while (true) {
+		let res = "";
+        let num = Keyboard.keyPressed();
+        if(~num | num < 48 | num > 57 ){
+            do Output.printString("Enter a Key between 0 and 9");
+            do Output.println();
+        }
+        else{
+            while ( num > 0 ) {
+                if(num&1){
+                    do res.appendChar(49);
+                } else {
+                    do res.appendChar(48);
+                }
+                let num = num / 2;
+            }
+        }
+
+        //reverse string.
+        var int i;
+        let i = 0;
+        while( i < res.Length()){
+
+        }
+	}
+
+        return;
+    }
+}

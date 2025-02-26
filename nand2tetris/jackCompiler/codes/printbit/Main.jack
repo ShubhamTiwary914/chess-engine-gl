@@ -1,0 +1,50 @@
+class Main { 
+    function void main() {
+        var String res;
+        var int num, actualNum;
+        var int i;
+
+        while(true) {
+            let res = String.new(16);  
+            let num = Keyboard.keyPressed();
+            
+            if(num = 140) { // escape char -> exit
+                return;
+            }
+            
+            // Only process when a key is pressed AND in valid range
+            if(~(num = 0) & (num > 47) & (num < 58)) {
+                let actualNum = num - 48;
+                
+                // Handle 0 specially
+                if(actualNum = 0) {
+                    do res.appendChar(48);
+                } else {
+                    // Convert to binary
+                    while(actualNum > 0) {
+                        if(actualNum & 1) {
+                            do res.appendChar(49);
+                        } else {
+                            do res.appendChar(48);
+                        }
+                        let actualNum = actualNum / 2;
+                    }
+                }
+                
+                // Print in reverse
+                let i = res.length() - 1;
+                while(i > -1) {
+                    do Output.printChar(res.charAt(i));
+                    let i = i - 1;
+                }
+                do Output.println();
+                
+                // Wait for key release
+                while(~(Keyboard.keyPressed() = 0)) { }
+            }
+            // Clean up
+            do res.dispose();
+        }
+        return;
+    }
+}

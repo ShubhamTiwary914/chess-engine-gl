@@ -1,0 +1,18 @@
+class Rectangle {
+    field int length;
+    field int width;
+
+    constructor Rectangle new(int l, int w){
+        let length = l;
+        let width = w;
+        return this;
+    }
+
+    method int getArea(){
+        return length*width;
+    }
+
+    method int getPerimeter(){
+        return 2*(length+width);
+    }
+}

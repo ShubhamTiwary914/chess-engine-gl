@@ -1,0 +1,14 @@
+class Main {
+    function void main(){
+        var Rectangle r1, r2;
+        var int r1Area;
+
+        let r1 = Rectangle.new(10, 20);
+        let r2 = Rectangle.new(20, 30);
+        let r1Area = r1.getArea();
+        
+        do Output.printInt(r1Area);
+        do Output.println();
+        return;
+    }
+}

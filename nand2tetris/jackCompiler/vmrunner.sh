@@ -1,0 +1,1 @@
+/home/sardiness/Desktop/pers/nand2tetris/nand2tetris/tools/VMEmulator.sh 
