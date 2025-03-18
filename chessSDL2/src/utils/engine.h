@@ -58,7 +58,7 @@ uint64_t getEdgesMask();
 //get 64bit number in bit representation (flat)
 std::string get64Bits(uint64_t num);
 //get 64 bit as 8x8 representation (bitboard form)
-void printBitBoard(u_int64_t testboard);
+void printBitBoard(u_int64_t testboard, std::string title="");
 
 
 

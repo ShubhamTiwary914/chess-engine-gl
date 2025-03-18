@@ -146,7 +146,7 @@ uint64_t getEdgesMask() {
 int getPieceBitIndex(char file, int rank){
     assert(rank >= 1 && rank <= 8);
     int fileId = parseFileID(file);
-    int bitIndex = (8*(rank)-1)-fileId; 
+    int bitIndex = (8*(rank-1))+fileId; //little endian system
     return bitIndex;
 }
 
@@ -165,7 +165,7 @@ std::string get64Bits(uint64_t num){
 
 
 //get 64 bit as 8x8 representation (bitboard form)
-void printBitBoard(u_int64_t testboard){
+void printBitBoard(u_int64_t testboard, std::string title){
     std::string bits = "";
     for(int rank=8; rank>=1; rank--){
         for(int file=65; file<= 72; file++){
