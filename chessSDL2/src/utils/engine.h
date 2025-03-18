@@ -7,6 +7,7 @@
 #include <chrono>
 #include <cmath>
 #include <functional>
+#include <algorithm>
 #include "./gui.h"
 #include "consts.h"
 
@@ -20,7 +21,7 @@ template<typename... Args>
 std::string format(const std::string& fmt, Args... args);
 uint64_t generateRandomU64(uint64_t seed);
 double execPerft(const std::function<void()> &func, int precision);
-
+std::string intToString(int num); 
 
 
 //File(a-h) -> ID(0-7)

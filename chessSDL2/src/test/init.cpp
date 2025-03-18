@@ -9,7 +9,7 @@
 #include "./force.h"
 #include "./init.h"
 
-//>utils
+//> utils
 //*Rank Mask
 TEST(Utils, RankMask)
 {
@@ -28,7 +28,7 @@ TEST(Utils, FileMask)
     }
 }
 
-//*Diagonal Left
+// //*Diagonal Left
 TEST(Utils, DiagonalLeftMask)
 {
     // a1 --> a8
@@ -42,11 +42,11 @@ TEST(Utils, DiagonalLeftMask)
     }
 }
 
-//*Diagonal Right
+// //*Diagonal Right
 TEST(Utils, DiagonalRightMask)
 {
     // a1 --> a8
-    char file = 'a';
+    char file = 'a'; 
     for (int rank = 1; rank <= 8; rank++)
     {
         for (char file = 'a'; file <= 'h'; file++)
@@ -62,8 +62,9 @@ TEST(Utils, EdgesMask)
     EXPECT_EQ(getEdgesMask_bruteForce(), getEdgesMask());
 }
 
-//>Moves
 
+
+//>Moves
 int main(int argc, char **argv)
 {
     check();
@@ -72,11 +73,12 @@ int main(int argc, char **argv)
 }
 
 
-
-
 uint64_t testingRookMask(char file, int rank){
     initializeBoard();
-    printBitBoard(whiteboard.getUnion(), "");
+    printBitBoard(whiteboard.getUnion(), "Whiteboard Pieces: ");
+    printBitBoard(blackboard.getUnion(), "\n\nBlackBoard Pieces: ");
+
+    printBitBoard(getDiagonalLeftBits('c', 6), "\n\nDiag on c6 (left):");
     return 0ULL;
 }
 

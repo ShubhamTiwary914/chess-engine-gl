@@ -1,6 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/chess_test.dir/src/test/initialize.cpp.o"
-  "CMakeFiles/chess_test.dir/src/test/initialize.cpp.o.d"
+  "CMakeFiles/chess_test.dir/link.d"
+  "CMakeFiles/chess_test.dir/src/test/force.cpp.o"
+  "CMakeFiles/chess_test.dir/src/test/force.cpp.o.d"
+  "CMakeFiles/chess_test.dir/src/test/init.cpp.o"
+  "CMakeFiles/chess_test.dir/src/test/init.cpp.o.d"
   "chess_test"
   "chess_test.pdb"
 )

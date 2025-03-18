@@ -6,9 +6,8 @@
       - subject method: optimal algorithm (usually the method needed to be tested)
 */
 
-#include <iostream>
-#include <utils/engine.h>
 
+#include "./force.h"
 
 
 uint64_t getRank_bruteForce(int rank){

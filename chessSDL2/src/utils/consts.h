@@ -43,34 +43,6 @@ extern const uint64_t DIAGONAL_RIGHT_BASE;
 extern const uint64_t DIAGONAL_LEFT_BASE;
 
 
-// uint64_t testingRookMask(char file, int rank){
-//     initializeBoard();
-//     uint64_t empty_board = 0ULL;
-
-//     uint64_t blockers = empty_board;
-//     setBit(blockers, getPieceBitIndex('b', 4));  
-//     setBit(blockers, getPieceBitIndex('d', 7));
-//     setBit(blockers, getPieceBitIndex('d', 8));
-//     uint64_t rookBit = empty_board; setBit(rookBit, getPieceBitIndex(file,rank));
-
-//     printBitBoard(rookBit, "Rook at d4"); 
-//     printBitBoard(blockers, "Blockers: ");
-//     uint64_t difference = blockers - 2*rookBit;
-//     printBitBoard(difference, "Difference: ");
-
-//     uint64_t change = difference ^ blockers;
-//     printBitBoard(change, "Change: ");
-
-//     uint64_t rookMask = getRookMask(file, rank, false); 
-//     setBit(rookMask, getPieceBitIndex(file,rank));  
-//     printBitBoard(rookMask, "Rook Mask: ");
-
-//     uint64_t attack = change & rookMask;
-//     printBitBoard(attack, "Attack Path: ");
-
-//     return 0ULL;
-// }
-
 extern const int KNIGHT_OFFSETS[8];
 extern const int KING_OFFSETS[8]; 
 extern const int PAWN_CAPTURE_OFFSETS[2];

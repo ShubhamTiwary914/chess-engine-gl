@@ -21,8 +21,8 @@ std::unordered_map<char, int> piecesCharMap = {
 
 const uint64_t FILE_A_BITS = 0x8080808080808080;
 const uint64_t RANK_1_BITS = 0x00000000000000FF;
-const uint64_t DIAGONAL_RIGHT_BASE = 0x0102040810204080;  //   diagonal in form: /
-const uint64_t DIAGONAL_LEFT_BASE = 0x8040201008040201;   //  diagonal in form: \
+const uint64_t DIAGONAL_LEFT_BASE = 0x0102040810204080;  //   diagonal in form: /
+const uint64_t DIAGONAL_RIGHT_BASE = 0x8040201008040201;   //  diagonal in form: \
 
 
 

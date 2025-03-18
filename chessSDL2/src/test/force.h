@@ -13,8 +13,4 @@ uint64_t getEdgesMask_bruteForce();
 
 
 
-
-
-
-
 #endif 

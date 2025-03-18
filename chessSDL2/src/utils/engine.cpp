@@ -34,6 +34,19 @@ double execPerft(const std::function<void()> &func, int precision=2){
 }
 
 
+std::string intToString(int num) {
+  if (num == 0) return "0";
+  bool negative = num < 0;
+  if (negative) num = -num;
+  std::string result;
+  while (num > 0) {
+      result += '0' + (num % 10);
+      num /= 10;
+  }
+  if (negative) result += '-';
+  std::reverse(result.begin(), result.end());
+  return result;
+}
 
 
 
@@ -166,8 +179,9 @@ std::string get64Bits(uint64_t num){
 
 //get 64 bit as 8x8 representation (bitboard form)
 void printBitBoard(u_int64_t testboard, std::string title){
-    std::string bits = "";
+    std::string bits = title + "\n";
     for(int rank=8; rank>=1; rank--){
+        bits += intToString(rank) + "    ";
         for(int file=65; file<= 72; file++){
             int bitIndex = getPieceBitIndex(file, rank);
             if(getBit(testboard, bitIndex)){
@@ -178,5 +192,6 @@ void printBitBoard(u_int64_t testboard, std::string title){
         }
         bits += "\n";
     }
+    bits += "     a b c d e f g h\n\n";
     std::cout << bits;
 } 
