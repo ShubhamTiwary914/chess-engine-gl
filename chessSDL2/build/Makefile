@@ -335,6 +335,54 @@ src/engine/moves.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess_lib.dir/build.make CMakeFiles/chess_lib.dir/src/engine/moves.cpp.s
 .PHONY : src/engine/moves.cpp.s
 
+src/engine/state.o: src/engine/state.cpp.o
+.PHONY : src/engine/state.o
+
+# target to build an object file
+src/engine/state.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess_lib.dir/build.make CMakeFiles/chess_lib.dir/src/engine/state.cpp.o
+.PHONY : src/engine/state.cpp.o
+
+src/engine/state.i: src/engine/state.cpp.i
+.PHONY : src/engine/state.i
+
+# target to preprocess a source file
+src/engine/state.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess_lib.dir/build.make CMakeFiles/chess_lib.dir/src/engine/state.cpp.i
+.PHONY : src/engine/state.cpp.i
+
+src/engine/state.s: src/engine/state.cpp.s
+.PHONY : src/engine/state.s
+
+# target to generate assembly for a file
+src/engine/state.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess_lib.dir/build.make CMakeFiles/chess_lib.dir/src/engine/state.cpp.s
+.PHONY : src/engine/state.cpp.s
+
+src/engine/zobrist.o: src/engine/zobrist.cpp.o
+.PHONY : src/engine/zobrist.o
+
+# target to build an object file
+src/engine/zobrist.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess_lib.dir/build.make CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o
+.PHONY : src/engine/zobrist.cpp.o
+
+src/engine/zobrist.i: src/engine/zobrist.cpp.i
+.PHONY : src/engine/zobrist.i
+
+# target to preprocess a source file
+src/engine/zobrist.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess_lib.dir/build.make CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.i
+.PHONY : src/engine/zobrist.cpp.i
+
+src/engine/zobrist.s: src/engine/zobrist.cpp.s
+.PHONY : src/engine/zobrist.s
+
+# target to generate assembly for a file
+src/engine/zobrist.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess_lib.dir/build.make CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.s
+.PHONY : src/engine/zobrist.cpp.s
+
 src/test/force.o: src/test/force.cpp.o
 .PHONY : src/test/force.o
 
@@ -487,6 +535,12 @@ help:
 	@echo "... src/engine/moves.o"
 	@echo "... src/engine/moves.i"
 	@echo "... src/engine/moves.s"
+	@echo "... src/engine/state.o"
+	@echo "... src/engine/state.i"
+	@echo "... src/engine/state.s"
+	@echo "... src/engine/zobrist.o"
+	@echo "... src/engine/zobrist.i"
+	@echo "... src/engine/zobrist.s"
 	@echo "... src/test/force.o"
 	@echo "... src/test/force.i"
 	@echo "... src/test/force.s"

@@ -3,8 +3,6 @@
 
 selectedPiece selected = {'\0', 'a', 1, 0, false};
 int selectedSquare = -1;
-int turn = WHITE_TURN;
-
 
 
 void initializeGame(){
@@ -57,8 +55,9 @@ void mouseClicker(boardPos &pos, SDL_Event &ev){
     //in bounds
     if(!isInvalidPos(pos)){
         //ask to move (if selected in last)
-        if(selectPiece(pos, selected, turn)){           
+        if(selectPiece(pos, selected, state.turn)){           
             movePiece(selected.file, selected.rank, pos.file, pos.rank, mainboard, whiteboard, blackboard);
+            state.move_state("k");
             clearSelection(selected);
         }
     }

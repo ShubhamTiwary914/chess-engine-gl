@@ -100,10 +100,38 @@ CMakeFiles/chess_lib.dir/src/engine/moves.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chess_lib.dir/src/engine/moves.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.cpp -o CMakeFiles/chess_lib.dir/src/engine/moves.cpp.s
 
+CMakeFiles/chess_lib.dir/src/engine/state.cpp.o: CMakeFiles/chess_lib.dir/flags.make
+CMakeFiles/chess_lib.dir/src/engine/state.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.cpp
+CMakeFiles/chess_lib.dir/src/engine/state.cpp.o: CMakeFiles/chess_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/chess_lib.dir/src/engine/state.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chess_lib.dir/src/engine/state.cpp.o -MF CMakeFiles/chess_lib.dir/src/engine/state.cpp.o.d -o CMakeFiles/chess_lib.dir/src/engine/state.cpp.o -c /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.cpp
+
+CMakeFiles/chess_lib.dir/src/engine/state.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chess_lib.dir/src/engine/state.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.cpp > CMakeFiles/chess_lib.dir/src/engine/state.cpp.i
+
+CMakeFiles/chess_lib.dir/src/engine/state.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chess_lib.dir/src/engine/state.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.cpp -o CMakeFiles/chess_lib.dir/src/engine/state.cpp.s
+
+CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o: CMakeFiles/chess_lib.dir/flags.make
+CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/engine/zobrist.cpp
+CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o: CMakeFiles/chess_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o -MF CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o.d -o CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o -c /home/dev/work/chess-engine-gl/chessSDL2/src/engine/zobrist.cpp
+
+CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dev/work/chess-engine-gl/chessSDL2/src/engine/zobrist.cpp > CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.i
+
+CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dev/work/chess-engine-gl/chessSDL2/src/engine/zobrist.cpp -o CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.s
+
 CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o: CMakeFiles/chess_lib.dir/flags.make
 CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/app/_engine.cpp
 CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o: CMakeFiles/chess_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o -MF CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o.d -o CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o -c /home/dev/work/chess-engine-gl/chessSDL2/src/app/_engine.cpp
 
 CMakeFiles/chess_lib.dir/src/app/_engine.cpp.i: cmake_force
@@ -117,7 +145,7 @@ CMakeFiles/chess_lib.dir/src/app/_engine.cpp.s: cmake_force
 CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o: CMakeFiles/chess_lib.dir/flags.make
 CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/app/_gui.cpp
 CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o: CMakeFiles/chess_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o -MF CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o.d -o CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o -c /home/dev/work/chess-engine-gl/chessSDL2/src/app/_gui.cpp
 
 CMakeFiles/chess_lib.dir/src/app/_gui.cpp.i: cmake_force
@@ -131,7 +159,7 @@ CMakeFiles/chess_lib.dir/src/app/_gui.cpp.s: cmake_force
 CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o: CMakeFiles/chess_lib.dir/flags.make
 CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/app/gamemain.cpp
 CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o: CMakeFiles/chess_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o -MF CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o.d -o CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o -c /home/dev/work/chess-engine-gl/chessSDL2/src/app/gamemain.cpp
 
 CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.i: cmake_force
@@ -145,7 +173,7 @@ CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.s: cmake_force
 CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o: CMakeFiles/chess_lib.dir/flags.make
 CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.cpp
 CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o: CMakeFiles/chess_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o -MF CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o.d -o CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o -c /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.cpp
 
 CMakeFiles/chess_lib.dir/src/utils/consts.cpp.i: cmake_force
@@ -159,7 +187,7 @@ CMakeFiles/chess_lib.dir/src/utils/consts.cpp.s: cmake_force
 CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o: CMakeFiles/chess_lib.dir/flags.make
 CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/utils/engine.cpp
 CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o: CMakeFiles/chess_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o -MF CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o.d -o CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o -c /home/dev/work/chess-engine-gl/chessSDL2/src/utils/engine.cpp
 
 CMakeFiles/chess_lib.dir/src/utils/engine.cpp.i: cmake_force
@@ -173,7 +201,7 @@ CMakeFiles/chess_lib.dir/src/utils/engine.cpp.s: cmake_force
 CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o: CMakeFiles/chess_lib.dir/flags.make
 CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.cpp
 CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o: CMakeFiles/chess_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o -MF CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o.d -o CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o -c /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.cpp
 
 CMakeFiles/chess_lib.dir/src/utils/gui.cpp.i: cmake_force
@@ -188,6 +216,8 @@ CMakeFiles/chess_lib.dir/src/utils/gui.cpp.s: cmake_force
 chess_lib_OBJECTS = \
 "CMakeFiles/chess_lib.dir/src/engine/boards.cpp.o" \
 "CMakeFiles/chess_lib.dir/src/engine/moves.cpp.o" \
+"CMakeFiles/chess_lib.dir/src/engine/state.cpp.o" \
+"CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o" \
 "CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o" \
 "CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o" \
 "CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o" \
@@ -200,6 +230,8 @@ chess_lib_EXTERNAL_OBJECTS =
 
 libchess_lib.a: CMakeFiles/chess_lib.dir/src/engine/boards.cpp.o
 libchess_lib.a: CMakeFiles/chess_lib.dir/src/engine/moves.cpp.o
+libchess_lib.a: CMakeFiles/chess_lib.dir/src/engine/state.cpp.o
+libchess_lib.a: CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o
 libchess_lib.a: CMakeFiles/chess_lib.dir/src/app/_engine.cpp.o
 libchess_lib.a: CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o
 libchess_lib.a: CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o
@@ -208,7 +240,7 @@ libchess_lib.a: CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o
 libchess_lib.a: CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o
 libchess_lib.a: CMakeFiles/chess_lib.dir/build.make
 libchess_lib.a: CMakeFiles/chess_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libchess_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dev/work/chess-engine-gl/chessSDL2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library libchess_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/chess_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chess_lib.dir/link.txt --verbose=$(VERBOSE)
 

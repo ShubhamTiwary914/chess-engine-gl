@@ -490,6 +490,7 @@ CMakeFiles/chess_test.dir/src/test/init.cpp.o: /home/dev/work/chess-engine-gl/ch
   /home/dev/work/chess-engine-gl/chessSDL2/src/app/_engine.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/boards.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.h \
+  /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/test/force.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/test/init.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.h \
@@ -1482,6 +1483,12 @@ lib/libgtest_main.a:
 
 /usr/include/asm-generic/posix_types.h:
 
+/usr/include/c++/14.2.1/condition_variable:
+
+/usr/include/c++/14.2.1/bit:
+
+/usr/include/bits/types/__sigset_t.h:
+
 /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.h:
 
 /usr/include/c++/14.2.1/map:
@@ -1583,8 +1590,6 @@ lib/libgtest_main.a:
 /usr/include/asm/errno.h:
 
 /usr/include/bits/stdint-uintn.h:
-
-/usr/include/c++/14.2.1/iostream:
 
 /usr/include/c++/14.2.1/concepts:
 
@@ -1699,6 +1704,10 @@ CMakeFiles/chess_test.dir/src/test/init.cpp.o:
 /usr/include/bits/types/__mbstate_t.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/prfchiintrin.h:
+
+/usr/include/c++/14.2.1/iostream:
+
+/home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h:
 
 /usr/include/bits/stdio_lim.h:
 
@@ -2165,12 +2174,6 @@ CMakeFiles/chess_test.dir/src/test/init.cpp.o:
 /usr/include/bits/siginfo-consts.h:
 
 /usr/include/bits/sigstack.h:
-
-/usr/include/c++/14.2.1/bit:
-
-/usr/include/bits/types/__sigset_t.h:
-
-/usr/include/c++/14.2.1/condition_variable:
 
 /usr/include/alloca.h:
 

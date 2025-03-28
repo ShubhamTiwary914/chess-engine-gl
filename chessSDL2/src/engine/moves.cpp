@@ -8,61 +8,29 @@ int rookBits[64];
 int bishopBits[64];
 
 
+//#region Precomputation
+
 movesSetStruct generatePrecomputedMoves() {
-    movesSetStruct movesSet; 
+    movesSetStruct  movesSet; 
     for(int rank=1; rank<=8; rank++) {
         for(int file='a'; file<='h'; file++) {
             int pos = getPieceBitIndex(file, rank);
-            movesSet.moves[PAWN][pos] = getPawnMoves(file, rank, WHITE_TURN);
-            movesSet.moves[KNIGHT][pos] = getKnightMoves(file, rank);
             movesSet.moves[KING][pos] = getKingMoves(file, rank);
+            movesSet.moves[PAWN][pos] = getPawnMoves(file, rank, WHITE_TURN);
+            movesSet.blackPawn[pos] = getPawnMoves(file, rank, BLACK_TURN);
+            movesSet.moves[KNIGHT][pos] = getKnightMoves(file, rank);
         }
     }
     return movesSet;
 }
 
 
-void initializeMagicTables() {
-    // Initialize tables to 0
-    for(int rank = 1; rank <= 8; rank++) {
-        for(char file = 'a'; file <= 'h'; file++) {
-            int square = getPieceBitIndex(file, rank);
-            for(int i = 0; i < 4096; i++) {
-                rookAttackTable[square][i] = 0ULL;
-                bishopAttackTable[square][i] = 0ULL;
-            }
-        }
-    }
-    // Initialize for each square
-    for(int rank = 1; rank <= 8; rank++) {
-        for(char file = 'a'; file <= 'h'; file++) {
-            int square = getPieceBitIndex(file, rank);
-            uint64_t rookMask = getRookMask(file, rank);
-            uint64_t bishopMask = getBishopMask(file, rank);
-            // rook attacks
-            auto rookConfigs = generateBlockerConfigurations(rookMask);
-            for(uint64_t blockers : rookConfigs) {
-                uint64_t attacks = getRookAttacks(file, rank, blockers);
-                uint64_t magicIndex = ((blockers) * ROOK_MAGICS[square]) >> (64 - 12);
-                rookAttackTable[square][magicIndex] = attacks;
-            }
-            // bishop attacks        
-            auto bishopConfigs = generateBlockerConfigurations(bishopMask);
-            for(uint64_t blockers : bishopConfigs) {
-                uint64_t attacks = getBishopAttacks(file, rank, blockers);
-                uint64_t magicIndex = (blockers * BISHOP_MAGICS[square]) >> (64 - 12);
-                bishopAttackTable[square][magicIndex] = attacks;
-            }
-
-        }
-    }
-}
-
-
-
-uint64_t getPrecomputedMove(movesSetStruct &movesSet, int pieceID, char file, int rank) {
-    assert(pieceID >= KING && pieceID <= PAWN);  // Validate piece ID
+uint64_t getPrecomputedMove(movesSetStruct &movesSet, int pieceID, char file, int rank, bool turn) {
+    assert(pieceID >= 0 && pieceID <= 6);  // Validate piece ID
+    //special case: black pawn
     int index = getPieceBitIndex(file, rank);
+    if(turn == BLACK_TURN && pieceID == PAWN)
+        return movesSet.blackPawn[index];
     uint64_t move = movesSet.moves[pieceID][index];
     return move;
 }
@@ -78,27 +46,19 @@ uint64_t filterMoveBlocks(char file, int rank, uint64_t precompMoves, int pieceT
         return (precompMoves & (~sidePieces));
     }
     uint64_t moves = 0;
-    // Get moves using magic bitboards
+    // Get moves using magic bitboards (for diagonals)
     if(pieceType == BISHOP || pieceType == QUEEN) {
         moves |= getMagicMoves(file, rank, allPieces, false);
     }
     if(pieceType == ROOK || pieceType == QUEEN) {
+        //bruteforce for edges
+        if(file == 'a' || file == 'h' || rank == 1 || rank == 8)
+        moves |= getRookAttacks(file, rank, allPieces);
+        //for non edges --> magic bitboards
+        else
         moves |= getMagicMoves(file, rank, allPieces, true);
-    }
-    
+    } 
     return moves & (~sidePieces);
-}
-
-
-
-
-uint64_t getMagicMoves(char file, int rank, uint64_t occupied, bool isRook) {
-    int square = getPieceBitIndex(file, rank);
-    uint64_t magic = isRook ? ROOK_MAGICS[square] : BISHOP_MAGICS[square];
-    uint64_t mask = isRook ? getRookMask(file, rank) : getBishopMask(file, rank);
-    uint64_t relevantBits = occupied & mask;
-    uint64_t magicIndex = (relevantBits * magic) >> (64 - 12);
-    return isRook ? rookAttackTable[square][magicIndex] : bishopAttackTable[square][magicIndex];
 }
 
 
@@ -120,9 +80,11 @@ uint64_t getPawnMoves(char file, int rank, int turn=WHITE_TURN) {
         }
     }
     else {  // BLACK_TURN
+        //one square back
         int newPos = pos - 8;
         if(newPos >= 0) {
             setBit(moves, newPos);
+            //two squares on start rank (rank 7)
             if(rank == 7) {
                 int newPos2 = newPos - 8;
                 if (newPos2 >= 0) setBit(moves, newPos2); 
@@ -168,10 +130,66 @@ uint64_t getKingMoves(char file, int rank) {
 }
 
 
-uint64_t getRookMask(char file, int rank) {
+
+//#region Magic Bitboards
+void initializeMagicTables() {
+    // Initialize tables to 0
+    for(int rank = 1; rank <= 8; rank++) {
+        for(char file = 'a'; file <= 'h'; file++) {
+            int square = getPieceBitIndex(file, rank);
+            for(int i = 0; i < 4096; i++) {
+                rookAttackTable[square][i] = 0ULL;
+                bishopAttackTable[square][i] = 0ULL;
+            }
+        }
+    }
+    // Initialize for each square
+    for(int rank = 1; rank <= 8; rank++) {
+        for(char file = 'a'; file <= 'h'; file++) {
+            int square = getPieceBitIndex(file, rank);
+            uint64_t rookMask = getRookMask(file, rank);
+            uint64_t bishopMask = getBishopMask(file, rank);
+            // rook attacks
+            auto rookConfigs = generateBlockerConfigurations(rookMask);
+            for(uint64_t blockers : rookConfigs) {
+                uint64_t attacks = getRookAttacks(file, rank, blockers);
+                uint64_t magicIndex = ((blockers) * ROOK_MAGICS[square]) >> (64 - 12);
+                rookAttackTable[square][magicIndex] = attacks;
+            }
+            // bishop attacks        
+            auto bishopConfigs = generateBlockerConfigurations(bishopMask);
+            for(uint64_t blockers : bishopConfigs) {
+                uint64_t attacks = getBishopAttacks(file, rank, blockers);
+                uint64_t magicIndex = (blockers * BISHOP_MAGICS[square]) >> (64 - 12);
+                bishopAttackTable[square][magicIndex] = attacks;
+            }
+
+        }
+    }
+}
+
+
+uint64_t getMagicMoves(char file, int rank, uint64_t occupied, bool isRook) {
+    int square = getPieceBitIndex(file, rank);
+    uint64_t magic = isRook ? ROOK_MAGICS[square] : BISHOP_MAGICS[square];
+    uint64_t mask = isRook ? getRookMask(file, rank) : getBishopMask(file, rank);
+    uint64_t relevantBits = occupied & mask;
+    uint64_t magicIndex = (relevantBits * magic) >> (64 - 12);
+    return isRook ? rookAttackTable[square][magicIndex] : bishopAttackTable[square][magicIndex];
+}
+
+
+
+
+
+//#region Masks & Brute-Force
+
+
+uint64_t getRookMask(char file, int rank, bool maskEdges) {
     int square = getPieceBitIndex(file, rank);
     uint64_t mask = getFileBits(file) | getRankBits(rank);
-    mask &= ~getEdgesMask();
+    if(maskEdges)
+        mask &= ~getEdgesMask();
     clearBit(mask, square);
     return mask;
 }
@@ -274,4 +292,32 @@ uint64_t getBishopAttacks(char file, int rank, uint64_t blockers) {
     }
     
     return attacks;
+}
+
+
+U64 rookAttacks_bitScan(U64 occ, char file, int rank){
+    U64 rookFile_occ = getFileBits(file) & occ;
+    U64 rookRank_occ = getRankBits(rank) & occ;
+    int fileID = parseFileID(file);
+    //directions [4x log(n)]
+    int top = getFirstSetBit(rookFile_occ & ~RANK_MASKS[rank-1]); 
+    int bot = getLastSetBit(rookFile_occ & (~(~RANK_MASKS[rank-1])) & (~getRankBits(rank)));
+    int left = getLastSetBit(rookRank_occ & ~((~FILE_MASKS[fileID])|getFileBits(file)));
+    int right = getFirstSetBit(rookRank_occ & (~FILE_MASKS[fileID]));
+
+    U64 fullRay = getRookMask(file, rank, false);
+    // under top
+    if((rookFile_occ & ~RANK_MASKS[rank-1]))
+        fullRay &= (RANK_MASKS[getrankInverseID(top)-1]);  
+    //above bot
+    if((rookFile_occ & (~(~RANK_MASKS[rank-1])) & (~getRankBits(rank))) && (getrankInverseID(bot) >= 2))
+        fullRay &= (~RANK_MASKS[getrankInverseID(bot)-2]);
+    //after left
+    if((rookRank_occ & ~((~FILE_MASKS[fileID])|getFileBits(file))) && (getfileInverseID(left) >= 1))
+        fullRay &= (~FILE_MASKS[getfileInverseID(left-1)]);
+    //before right
+    if(rookRank_occ & (~FILE_MASKS[fileID]))
+        fullRay &= (FILE_MASKS[getfileInverseID(right)]); 
+  
+    return fullRay;
 }

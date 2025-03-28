@@ -363,6 +363,7 @@ CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o: \
  /usr/include/c++/14.2.1/bits/fs_ops.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h \
+ /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/app/_gui.h \

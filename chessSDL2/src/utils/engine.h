@@ -24,8 +24,14 @@ double execPerft(const std::function<void()> &func, int precision);
 std::string intToString(int num); 
 
 
-//File(a-h) -> ID(0-7)
+
+//> Parsing
+/// @brief convert (rank, file) in 2D -> 1D bit index (for boards) || rank = row(1-8), file = col(A-H)
 int parseFileID(char file);
+int getfileInverseID(int pieceIndex);
+int getrankInverseID(int pieceIndex);
+
+
 bool isWhitePiece(char piece);
 void switchTurn(int &turn);
 void clearSelection(selectedPiece &selected);
@@ -53,6 +59,13 @@ uint64_t getDiagonalRightBits(char file, int rank);
 // diagonal in form: (\) - starts from bot left
 uint64_t getDiagonalLeftBits(char file, int rank);
 uint64_t getEdgesMask();
+
+
+
+/// @brief get first bit that's (1 - set) from LSB side
+int getFirstSetBit(U64 unum);
+/// @brief last bit that's (1 - set) from MSB side
+int getLastSetBit(U64 unum);
 
 
 

@@ -7,6 +7,7 @@ CMakeFiles/chess.dir/main.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/main.c
   /home/dev/work/chess-engine-gl/chessSDL2/src/app/gamemain.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/boards.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.h \
+  /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/engine.h \
@@ -812,13 +813,15 @@ chess: /usr/lib/Scrt1.o \
 
 /usr/include/c++/14.2.1/cstring:
 
+/usr/include/c++/14.2.1/cstdio:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/avx512vp2intersectvlintrin.h:
 
 /home/dev/work/chess-engine-gl/chessSDL2/src/engine/boards.h:
 
-/usr/include/bits/mathcalls.h:
-
 /usr/include/bits/types/__fpos_t.h:
+
+/usr/include/bits/mathcalls.h:
 
 /usr/include/c++/14.2.1/ctime:
 
@@ -838,10 +841,6 @@ chess: /usr/lib/Scrt1.o \
 
 /usr/include/bits/stdio_lim.h:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/prfchiintrin.h:
-
-/usr/include/bits/types/__mbstate_t.h:
-
 /usr/lib/libaom.so.3:
 
 /usr/lib/libstdc++.so:
@@ -851,12 +850,6 @@ chess: /usr/lib/Scrt1.o \
 /usr/include/c++/14.2.1/bits/uniform_int_dist.h:
 
 /usr/include/c++/14.2.1/bits/uses_allocator_args.h:
-
-/usr/include/bits/types/cookie_io_functions_t.h:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h:
-
-/home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h:
 
 /usr/include/features.h:
 
@@ -922,16 +915,6 @@ CMakeFiles/chess.dir/main.cpp.o:
 
 /usr/include/c++/14.2.1/bits/cxxabi_init_exception.h:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/lwpintrin.h:
-
-/usr/include/libintl.h:
-
-/usr/include/c++/14.2.1/typeinfo:
-
-/usr/include/bits/endianness.h:
-
-/usr/include/c++/14.2.1/cassert:
-
 /usr/include/bits/cpu-set.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/keylockerintrin.h:
@@ -987,6 +970,8 @@ CMakeFiles/chess.dir/main.cpp.o:
 /usr/include/c++/14.2.1/ext/type_traits.h:
 
 /usr/include/SDL2/close_code.h:
+
+/usr/include/SDL2/SDL_rect.h:
 
 /usr/include/c++/14.2.1/vector:
 
@@ -1052,6 +1037,12 @@ CMakeFiles/chess.dir/main.cpp.o:
 
 /usr/include/c++/14.2.1/backward/binders.h:
 
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h:
+
+/home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h:
+
+/usr/include/bits/types/cookie_io_functions_t.h:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/tmmintrin.h:
 
 /usr/include/c++/14.2.1/tr1/riemann_zeta.tcc:
@@ -1092,7 +1083,27 @@ CMakeFiles/chess.dir/main.cpp.o:
 
 /usr/include/SDL2/SDL_misc.h:
 
-/usr/include/SDL2/SDL_rect.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/lwpintrin.h:
+
+/usr/include/libintl.h:
+
+/usr/include/c++/14.2.1/typeinfo:
+
+/usr/include/bits/endianness.h:
+
+/usr/include/c++/14.2.1/cassert:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/prfchiintrin.h:
+
+/usr/include/bits/types/__mbstate_t.h:
+
+/home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h:
+
+/usr/include/SDL2/SDL_keycode.h:
+
+/usr/include/stdio.h:
+
+/usr/include/bits/wordsize.h:
 
 /usr/lib/libSDL2.so:
 
@@ -1186,12 +1197,6 @@ CMakeFiles/chess.dir/main.cpp.o:
 
 /usr/include/bits/byteswap.h:
 
-/usr/include/SDL2/SDL_keycode.h:
-
-/usr/include/stdio.h:
-
-/usr/include/bits/wordsize.h:
-
 /usr/include/SDL2/SDL_render.h:
 
 /usr/lib/libsharpyuv.so.0:
@@ -1268,9 +1273,9 @@ libchess_lib.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/float.h:
 
-/usr/include/c++/14.2.1/bits/stl_uninitialized.h:
-
 /usr/include/SDL2/SDL_pixels.h:
+
+/usr/include/c++/14.2.1/bits/stl_uninitialized.h:
 
 /usr/include/bits/types/struct_sched_param.h:
 
@@ -1541,5 +1546,3 @@ libchess_lib.a:
 /usr/include/c++/14.2.1/cstddef:
 
 /usr/include/c++/14.2.1/cerrno:
-
-/usr/include/c++/14.2.1/cstdio:

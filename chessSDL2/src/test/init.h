@@ -3,7 +3,6 @@
 
 
 
-uint64_t testingRookMask(char file, int rank); 
 void check();
 
 

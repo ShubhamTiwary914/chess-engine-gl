@@ -8,6 +8,7 @@ CMakeFiles/chess.dir/main.cpp.o
  /home/dev/work/chess-engine-gl/chessSDL2/src/app/gamemain.h
  /home/dev/work/chess-engine-gl/chessSDL2/src/engine/boards.h
  /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.h
+ /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.h
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/engine.h

@@ -5,6 +5,7 @@
 #include <cstring>
 #include <string>
 #include "engine/boards.h"
+#include "engine/state.h"
 #include "engine/moves.h"
 #include "utils/gui.h"
 #include "utils/engine.h"
@@ -15,12 +16,12 @@ extern BitBoardSet whiteboard;
 extern BitBoardSet blackboard;
 extern PieceList mainboard;
 extern movesSetStruct movesSet;
+extern GameState state;
 
 
-int chessEngine();
 void initializeBoard();
 //select piece & request to move(1)
-int selectPiece(boardPos pos, selectedPiece &selected, int &turn);
+int selectPiece(boardPos pos, selectedPiece &selected, bool turn);
 
 
 

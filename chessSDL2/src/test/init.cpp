@@ -9,6 +9,12 @@
 #include "./force.h"
 #include "./init.h"
 
+#define breakln std::cout << std::endl
+
+
+using U64 = uint64_t;
+
+
 //> utils
 //*Rank Mask
 TEST(Utils, RankMask)
@@ -65,28 +71,23 @@ TEST(Utils, EdgesMask)
 
 
 //>Moves
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv){
     check();
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
 
 
-uint64_t testingRookMask(char file, int rank){
-    initializeBoard();
-    printBitBoard(whiteboard.getUnion(), "Whiteboard Pieces: ");
-    printBitBoard(blackboard.getUnion(), "\n\nBlackBoard Pieces: ");
-
-    printBitBoard(getDiagonalLeftBits('c', 6), "\n\nDiag on c6 (left):");
-    return 0ULL;
-}
-
-
-
 
 void check()
 {
-    testingRookMask('d', 4);   
-    std::cout << "\n\n";
+    initializeBoard(); 
+
+    U64 occ = 0ULL; 
+    setBit(occ, a2);  setBit(occ, a6); setBit(occ, c5); setBit(occ, d5); 
+    printBitBoard(occ, "Occupancy: ");
+
+
+    U64 brd4 = getRookAttacks('a', 5, occ);
+    printBitBoard(brd4);
 }

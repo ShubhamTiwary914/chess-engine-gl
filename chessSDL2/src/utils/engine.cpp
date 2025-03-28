@@ -115,7 +115,7 @@ uint64_t reverse_bits(uint64_t x) {
 
 uint64_t getFileBits(char file){
   int fileID = parseFileID(file); 
-  return FILE_A_BITS >> (fileID);
+  return FILE_H_BITS >> (7 - fileID);
 }
 
 //rank = (1-8)
@@ -134,6 +134,8 @@ uint64_t getDiagonalRightBits(char file, int rank){
     return (DIAGONAL_RIGHT_BASE << (8*abs(8-diagID)) );
   }
 }
+
+
 // diagonal in form: (\) - starts from bot left
 uint64_t getDiagonalLeftBits(char file, int rank){
   int fileID = parseFileID(file);
@@ -148,14 +150,10 @@ uint64_t getDiagonalLeftBits(char file, int rank){
 
 /// @brief corners bits: (first & last) ranks + files
 uint64_t getEdgesMask() {
-    return (RANK_1_BITS | (RANK_1_BITS << 56) | FILE_A_BITS | (FILE_A_BITS >> 7));
+    return (RANK_1_BITS | (RANK_1_BITS << 56) | FILE_H_BITS | (FILE_H_BITS >> 7));
 }
 
 
-
-
-//convert (rank, file) in 2D -> 1D bit index (for boards)
-//rank = row(1-8), file = col(A-H)
 int getPieceBitIndex(char file, int rank){
     assert(rank >= 1 && rank <= 8);
     int fileId = parseFileID(file);
@@ -163,6 +161,26 @@ int getPieceBitIndex(char file, int rank){
     return bitIndex;
 }
 
+
+int getfileInverseID(int pieceIndex){
+  return (pieceIndex % 8);
+}
+
+int getrankInverseID(int pieceIndex){
+  return ((pieceIndex / 8) + 1);
+}
+
+
+
+
+// get first bit that's (1 - set) from LSB side
+int getFirstSetBit(U64 unum){
+  return __builtin_ctzll(unum); 
+}
+//get last bit that's (1 - set) from MSB side
+int getLastSetBit(U64 unum){
+  return 63 - __builtin_clzll(unum);
+}
 
 
 //get 64bit number in bit representation (flat)
@@ -174,7 +192,7 @@ std::string get64Bits(uint64_t num){
      num>>=1;
   }
   return bits;
-}
+} 
 
 
 //get 64 bit as 8x8 representation (bitboard form)

@@ -22,7 +22,7 @@ uint64_t getRank_bruteForce(int rank){
 uint64_t getFile_bruteForce(char file){
     uint64_t bits = 0;
     int fileID = file - 'a';
-    for(int i=(7-fileID); i<=63; i+=8){
+    for(int i=fileID; i<=63; i+=8){
         setBit(bits, i);
     }
     return bits;

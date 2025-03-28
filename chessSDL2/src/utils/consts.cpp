@@ -10,25 +10,56 @@ void BREAKPOINT(bool condition, const std::string &message) {
 
 std::unordered_map<char, int> piecesCharMap = {
     {'k', KING},   {'K', KING},
-    {'q', QUEEN},  {'Q', QUEEN},
-    {'r', ROOK},   {'R', ROOK},
-    {'b', BISHOP}, {'B', BISHOP},
-    {'n', KNIGHT}, {'N', KNIGHT},
     {'p', PAWN},   {'P', PAWN},
+    {'n', KNIGHT}, {'N', KNIGHT},
+    {'b', BISHOP}, {'B', BISHOP},
+    {'r', ROOK},   {'R', ROOK},
+    {'q', QUEEN},  {'Q', QUEEN},
     {'E', NONE}   
 };
 
 
-const uint64_t FILE_A_BITS = 0x8080808080808080;
+
+const uint64_t FILE_H_BITS = 0x8080808080808080;
 const uint64_t RANK_1_BITS = 0x00000000000000FF;
 const uint64_t DIAGONAL_LEFT_BASE = 0x0102040810204080;  //   diagonal in form: /
 const uint64_t DIAGONAL_RIGHT_BASE = 0x8040201008040201;   //  diagonal in form: \
+
+
+/// @brief masking the 1, 1&2, 1&2&3, ... ranks
+const U64 FILE_MASKS[8] = {
+    72340172838076673ULL,
+    144680345676153346ULL,
+    289360691352306692ULL,
+    578721382704613384ULL,
+    1157442765409226768ULL,
+    2314885530818453536ULL,
+    4629771061636907072ULL,
+    9259542123273814144ULL
+};
+
+/// @brief masing the a, a&b, a&b&c, ... files
+const U64 RANK_MASKS[8] = {
+    255ULL,
+    65280ULL,
+    16711680ULL,
+    4278190080ULL,
+    1095216660480ULL,
+    280375465082880ULL,
+    71776119061217280ULL,
+    18374686479671623680ULL
+};
+
+
 
 
 
 const int KNIGHT_OFFSETS[8] = {-17, -15, -10, -6, 6, 10, 15, 17};
 const int KING_OFFSETS[8] = {-9, -8, -7, -1, 1, 7, 8, 9};
 const int PAWN_CAPTURE_OFFSETS[2] = {7, 9};
+
+
+
 
 
 

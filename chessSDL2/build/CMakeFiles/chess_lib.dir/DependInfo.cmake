@@ -13,6 +13,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/dev/work/chess-engine-gl/chessSDL2/src/app/gamemain.cpp" "CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o" "gcc" "CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o.d"
   "/home/dev/work/chess-engine-gl/chessSDL2/src/engine/boards.cpp" "CMakeFiles/chess_lib.dir/src/engine/boards.cpp.o" "gcc" "CMakeFiles/chess_lib.dir/src/engine/boards.cpp.o.d"
   "/home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.cpp" "CMakeFiles/chess_lib.dir/src/engine/moves.cpp.o" "gcc" "CMakeFiles/chess_lib.dir/src/engine/moves.cpp.o.d"
+  "/home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.cpp" "CMakeFiles/chess_lib.dir/src/engine/state.cpp.o" "gcc" "CMakeFiles/chess_lib.dir/src/engine/state.cpp.o.d"
+  "/home/dev/work/chess-engine-gl/chessSDL2/src/engine/zobrist.cpp" "CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o" "gcc" "CMakeFiles/chess_lib.dir/src/engine/zobrist.cpp.o.d"
   "/home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.cpp" "CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o" "gcc" "CMakeFiles/chess_lib.dir/src/utils/consts.cpp.o.d"
   "/home/dev/work/chess-engine-gl/chessSDL2/src/utils/engine.cpp" "CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o" "gcc" "CMakeFiles/chess_lib.dir/src/utils/engine.cpp.o.d"
   "/home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.cpp" "CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o" "gcc" "CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o.d"
