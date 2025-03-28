@@ -366,4 +366,5 @@ CMakeFiles/chess.dir/main.cpp.o: \
  /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/app/_gui.h \
- /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h
+ /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
+ /usr/include/SDL2/SDL_ttf.h

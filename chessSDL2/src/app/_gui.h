@@ -1,5 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+
 #include <iostream>
 #include <cassert>
 #include <unordered_map>
@@ -9,7 +11,7 @@
 #include "utils/engine.h"
 
 
-
+//main window - chess
 extern SDL_Window *window;
 extern SDL_Renderer *screen;
 extern SDL_Rect baseCoords;
@@ -18,6 +20,13 @@ extern int sqBase;
 extern int scaleX;
 extern int scaleY;
 const double pieceSpriteGap = 0.45;
+//logger window
+extern SDL_Window *logWindow;
+extern SDL_Renderer *logScreen;
+extern TTF_Font* font;
+extern int fontSize;
+extern std::string fontFamily;
+extern bool LOG_MODE;
 
 
 
@@ -31,10 +40,4 @@ void updateScreen();
 
 void renderBoard(selectedPiece &selected);
 void renderPieces(PieceList &mainboard);
-void movePiece(char fromFile, int fromRank, char toFile, int toRank,
-    PieceList &mainboard, BitBoardSet &whiteboard, BitBoardSet &blackboard);
-
-
-
-
-
+void renderString(std::string log);

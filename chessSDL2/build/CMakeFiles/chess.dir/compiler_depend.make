@@ -60,6 +60,7 @@ CMakeFiles/chess.dir/main.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/main.c
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_touch.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_video.h \
   /usr/include/SDL2/begin_code.h \
@@ -478,6 +479,7 @@ chess: /usr/lib/Scrt1.o \
   /usr/lib/crtn.o \
   /usr/lib/libSDL2.so \
   /usr/lib/libSDL2_image.so \
+  /usr/lib/libSDL2_ttf.so \
   /usr/lib/libc.so \
   /usr/lib/libgcc_s.so \
   /usr/lib/libgcc_s.so.1 \
@@ -495,9 +497,14 @@ chess: /usr/lib/Scrt1.o \
   /usr/lib/libbrotlicommon.so.1 \
   /usr/lib/libbrotlidec.so.1 \
   /usr/lib/libbrotlienc.so.1 \
+  /usr/lib/libbz2.so.1.0 \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
   /usr/lib/libdav1d.so.7 \
+  /usr/lib/libfreetype.so.6 \
+  /usr/lib/libglib-2.0.so.0 \
+  /usr/lib/libgraphite2.so.3 \
+  /usr/lib/libharfbuzz.so.0 \
   /usr/lib/libhwy.so.1 \
   /usr/lib/libjbig.so.2.1 \
   /usr/lib/libjpeg.so.8 \
@@ -506,6 +513,7 @@ chess: /usr/lib/Scrt1.o \
   /usr/lib/liblzma.so.5 \
   /usr/lib/libm.so.6 \
   /usr/lib/libmvec.so.1 \
+  /usr/lib/libpcre2-8.so.0 \
   /usr/lib/libpng16.so.16 \
   /usr/lib/librav1e.so.0.7 \
   /usr/lib/libsharpyuv.so.0 \
@@ -527,11 +535,19 @@ chess: /usr/lib/Scrt1.o \
 
 /usr/lib/libwebp.so.7:
 
+/usr/lib/libpcre2-8.so.0:
+
 /usr/lib/libmvec.so.1:
 
 /usr/lib/libjxl_cms.so.0.11:
 
 /usr/lib/libjbig.so.2.1:
+
+/usr/lib/libharfbuzz.so.0:
+
+/usr/lib/libglib-2.0.so.0:
+
+/usr/lib/libfreetype.so.6:
 
 /usr/lib/libc_nonshared.a:
 
@@ -546,6 +562,8 @@ chess: /usr/lib/Scrt1.o \
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/libgcc.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/crtendS.o:
+
+/usr/lib/libSDL2_ttf.so:
 
 /usr/lib/crti.o:
 
@@ -707,8 +725,6 @@ chess: /usr/lib/Scrt1.o \
 
 /usr/include/limits.h:
 
-/usr/include/inttypes.h:
-
 /usr/include/gnu/stubs-64.h:
 
 /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/os_defines.h:
@@ -815,6 +831,8 @@ chess: /usr/lib/Scrt1.o \
 
 /usr/include/c++/14.2.1/cstdio:
 
+/usr/include/c++/14.2.1/cstdint:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/avx512vp2intersectvlintrin.h:
 
 /home/dev/work/chess-engine-gl/chessSDL2/src/engine/boards.h:
@@ -885,6 +903,8 @@ chess: /usr/lib/Scrt1.o \
 
 /usr/include/SDL2/SDL_blendmode.h:
 
+/usr/lib/libgraphite2.so.3:
+
 /usr/include/bits/libm-simd-decl-stubs.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/movdirintrin.h:
@@ -916,10 +936,6 @@ CMakeFiles/chess.dir/main.cpp.o:
 /usr/include/c++/14.2.1/bits/cxxabi_init_exception.h:
 
 /usr/include/bits/cpu-set.h:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/keylockerintrin.h:
-
-/usr/include/SDL2/SDL_timer.h:
 
 /usr/include/SDL2/SDL_gamecontroller.h:
 
@@ -1049,6 +1065,18 @@ CMakeFiles/chess.dir/main.cpp.o:
 
 /usr/include/SDL2/SDL_keyboard.h:
 
+/usr/lib/libtiff.so.6:
+
+/usr/include/SDL2/SDL_log.h:
+
+/usr/include/SDL2/SDL_config_unix.h:
+
+/usr/include/c++/14.2.1/bits/stl_iterator_base_funcs.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/keylockerintrin.h:
+
+/usr/include/SDL2/SDL_timer.h:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/prfchwintrin.h:
 
 /usr/include/wctype.h:
@@ -1070,6 +1098,14 @@ CMakeFiles/chess.dir/main.cpp.o:
 /usr/include/c++/14.2.1/bits/predefined_ops.h:
 
 /usr/include/SDL2/SDL.h:
+
+/usr/lib/libz.so.1:
+
+/usr/include/SDL2/begin_code.h:
+
+/usr/include/SDL2/SDL_version.h:
+
+/usr/include/bits/uintn-identity.h:
 
 /usr/include/c++/14.2.1/bits/char_traits.h:
 
@@ -1123,14 +1159,6 @@ CMakeFiles/chess.dir/main.cpp.o:
 
 /home/dev/work/chess-engine-gl/chessSDL2/src/utils/engine.h:
 
-/usr/lib/libtiff.so.6:
-
-/usr/include/SDL2/SDL_log.h:
-
-/usr/include/SDL2/SDL_config_unix.h:
-
-/usr/include/c++/14.2.1/bits/stl_iterator_base_funcs.h:
-
 /usr/include/c++/14.2.1/numeric:
 
 /usr/include/bits/types.h:
@@ -1182,6 +1210,10 @@ CMakeFiles/chess.dir/main.cpp.o:
 /usr/include/bits/types/FILE.h:
 
 /usr/include/c++/14.2.1/cctype:
+
+/usr/include/inttypes.h:
+
+/usr/include/SDL2/SDL_ttf.h:
 
 /usr/include/bits/types/__sigset_t.h:
 
@@ -1236,14 +1268,6 @@ CMakeFiles/chess.dir/main.cpp.o:
 /usr/include/SDL2/SDL_surface.h:
 
 /usr/include/SDL2/SDL_system.h:
-
-/usr/lib/libz.so.1:
-
-/usr/include/SDL2/begin_code.h:
-
-/usr/include/bits/uintn-identity.h:
-
-/usr/include/SDL2/SDL_version.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/avx512cdintrin.h:
 
@@ -1337,6 +1361,8 @@ libchess_lib.a:
 
 /usr/include/c++/14.2.1/bits/allocated_ptr.h:
 
+/usr/lib/libbz2.so.1.0:
+
 /usr/include/c++/14.2.1/bits/allocator.h:
 
 /usr/include/c++/14.2.1/bits/basic_ios.tcc:
@@ -1410,8 +1436,6 @@ libchess_lib.a:
 /usr/include/c++/14.2.1/codecvt:
 
 /usr/include/c++/14.2.1/bits/invoke.h:
-
-/usr/include/c++/14.2.1/cstdint:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/avx512bitalgvlintrin.h:
 

@@ -11,11 +11,13 @@ add_subdirectory(include/googletest)
 find_package(SDL2 REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(SDL2_IMAGE REQUIRED SDL2_image)
+pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
 
 #libraries
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
+include_directories(${SDL2_TTF_INCLUDE_DIRS})
 
 #executables(.cpp)
 file(GLOB ENGINE_SOURCES "src/engine/*.cpp")
@@ -38,6 +40,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     glm
     ${SDL2_LIBRARIES}
     ${SDL2_IMAGE_LIBRARIES}
+    ${SDL2_TTF_LIBRARIES}
 )
 
 # Test executable

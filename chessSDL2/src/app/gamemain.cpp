@@ -1,8 +1,10 @@
 #include "gamemain.h"
 
 
+
 selectedPiece selected = {'\0', 'a', 1, 0, false};
 int selectedSquare = -1;
+
 
 
 void initializeGame(){
@@ -32,7 +34,7 @@ void gameCycle(){
             }
             //resize window
             if(ev.type == SDL_WINDOWEVENT && ev.window.event == SDL_WINDOWEVENT_RESIZED) {
-                std::cout << "resize" << std::endl;
+                // std::cout << "resize" << std::endl;
                 resizeHandler();
                 renderBoard(selected);
                 renderPieces(mainboard);
@@ -55,7 +57,7 @@ void mouseClicker(boardPos &pos, SDL_Event &ev){
     //in bounds
     if(!isInvalidPos(pos)){
         //ask to move (if selected in last)
-        if(selectPiece(pos, selected, state.turn)){           
+        if(selectPiece(pos, selected, state.turn)){         
             movePiece(selected.file, selected.rank, pos.file, pos.rank, mainboard, whiteboard, blackboard);
             state.move_state("k");
             clearSelection(selected);
@@ -66,5 +68,12 @@ void mouseClicker(boardPos &pos, SDL_Event &ev){
         clearSelection(selected);
     renderBoard(selected);
     renderPieces(mainboard);
+
+    U64 fullBits = blackboard.getUnion() | whiteboard.getUnion();
+    renderString(
+        printBitBoard(blackboard.getUnion(), "BlackBoard", false, 'b')
+        + "\n\n" +
+        printBitBoard(whiteboard.getUnion(), "WhiteBoard", false, 'w')
+    );
     updateScreen();
 }

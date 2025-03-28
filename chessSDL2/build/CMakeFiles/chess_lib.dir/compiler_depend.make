@@ -525,6 +525,7 @@ CMakeFiles/chess_lib.dir/src/app/_gui.cpp.o: /home/dev/work/chess-engine-gl/ches
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_touch.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_video.h \
   /usr/include/SDL2/begin_code.h \
@@ -996,6 +997,7 @@ CMakeFiles/chess_lib.dir/src/app/gamemain.cpp.o: /home/dev/work/chess-engine-gl/
   /usr/include/SDL2/SDL_thread.h \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_touch.h \
+  /usr/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_video.h \
   /usr/include/SDL2/begin_code.h \
@@ -4535,6 +4537,8 @@ CMakeFiles/chess_lib.dir/src/utils/gui.cpp.o: /home/dev/work/chess-engine-gl/che
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/wbnoinvdintrin.h:
 
 /usr/include/limits.h:
+
+/usr/include/SDL2/SDL_ttf.h:
 
 /usr/include/inttypes.h:
 

@@ -39,7 +39,7 @@ int selectPiece(boardPos pos, selectedPiece &selected, bool turn){
     }
     selected.moves = 0;
     
-    //> move evaluation
+    //> move generation 
     int pieceType = piecesCharMap[piece];
     selected.piece = piece; 
     selected.file = pos.file; 
@@ -47,10 +47,33 @@ int selectPiece(boardPos pos, selectedPiece &selected, bool turn){
     //pre-compute (only for jumping pieces)
     if(pieceType >= KING && pieceType <= KNIGHT)
         selected.moves = getPrecomputedMove(movesSet, pieceType, pos.file, pos.rank, state.turn);
+    //special case -> for pawn (promotions, attacks & moves are different, en passant)
+    selected.moves = filterPawnMoves(pos.file, pos.rank, selected.moves, turn, whiteboard, blackboard);
+    //dynamic gen -> for sliding 
     selected.moves = filterMoveBlocks(pos.file, pos.rank, selected.moves, pieceType, turn, whiteboard, blackboard);
     selected.isSelected = true;
-
-
     //*don't move piece
     return 0; 
 }
+
+
+
+void movePiece(char fromFile, int fromRank, char toFile, 
+    int toRank, PieceList &mainboard, BitBoardSet &whiteboard, BitBoardSet &blackboard){
+    char srcPiece = mainboard.getPiece(fromFile, fromRank);
+    char destPiece = mainboard.getPiece(toFile, toRank);
+    int srcPieceID = piecesCharMap[srcPiece];
+    int attackedPieceID = piecesCharMap[destPiece];
+    
+    if(isWhitePiece(srcPiece)){
+        whiteboard.movePiece(srcPieceID, fromFile, fromRank, toFile, toRank); 
+        blackboard.unsetPiece(attackedPieceID, toFile, toRank);
+    }
+    else{
+        blackboard.movePiece(srcPieceID, fromFile, fromRank, toFile, toRank);
+        whiteboard.unsetPiece(attackedPieceID, toFile, toRank);
+    }
+    
+    mainboard.movePiece(fromFile, fromRank, toFile, toRank);
+}
+

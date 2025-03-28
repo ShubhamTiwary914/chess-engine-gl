@@ -23,7 +23,8 @@ struct selectedPiece {
 
 //file: [0,7], rank: [0,7]
 void setSquareCoords(SDL_Rect &obj, int sqBase, int file, int rank);
-std::string getFullPath(std::string subPath);
+std::string getFullPath(std::string subPath="");
+const char* getFullPath(const char* path);
 bool isInvalidPos(boardPos pos);
 
 int keyBoardPress(SDL_Event &ev);

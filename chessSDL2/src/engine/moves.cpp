@@ -16,8 +16,8 @@ movesSetStruct generatePrecomputedMoves() {
         for(int file='a'; file<='h'; file++) {
             int pos = getPieceBitIndex(file, rank);
             movesSet.moves[KING][pos] = getKingMoves(file, rank);
-            movesSet.moves[PAWN][pos] = getPawnMoves(file, rank, WHITE_TURN);
-            movesSet.blackPawn[pos] = getPawnMoves(file, rank, BLACK_TURN);
+            movesSet.moves[PAWN][pos] = getPawnPrecomputedMoves(file, rank, WHITE_TURN);
+            movesSet.blackPawn[pos] = getPawnPrecomputedMoves(file, rank, BLACK_TURN);
             movesSet.moves[KNIGHT][pos] = getKnightMoves(file, rank);
         }
     }
@@ -36,11 +36,11 @@ uint64_t getPrecomputedMove(movesSetStruct &movesSet, int pieceID, char file, in
 }
 
 
-uint64_t filterMoveBlocks(char file, int rank, uint64_t precompMoves, int pieceType, int turn, BitBoardSet &whiteboard, BitBoardSet &blackboard) {
+uint64_t filterMoveBlocks(char file, int rank, uint64_t precompMoves, int pieceType, int turn, 
+    BitBoardSet &whiteboard, BitBoardSet &blackboard) {
     uint64_t sidePieces = (turn == WHITE_TURN) ? whiteboard.getUnion() : blackboard.getUnion();
     uint64_t oppPieces = (turn == WHITE_TURN) ? blackboard.getUnion() : whiteboard.getUnion();
     uint64_t allPieces = sidePieces | oppPieces;
-
     // jumping pieces (king, knight, pawn)
     if(pieceType == KING || pieceType == KNIGHT || pieceType == PAWN) {
         return (precompMoves & (~sidePieces));
@@ -57,13 +57,24 @@ uint64_t filterMoveBlocks(char file, int rank, uint64_t precompMoves, int pieceT
         //for non edges --> magic bitboards
         else
         moves |= getMagicMoves(file, rank, allPieces, true);
-    } 
+    }
+    //can't capture self pieces or opponent's king 
+    if(turn == WHITE_TURN)
+        moves &= (~blackboard.getPiece(KING));
+    else
+        moves &= (~whiteboard.getPiece(KING));
     return moves & (~sidePieces);
 }
 
 
+U64 filterPawnMoves(char file, int rank, uint64_t precomp, int turn, 
+    BitBoardSet &whiteboard, BitBoardSet &blackboard){
+       return precomp; 
+}
 
-uint64_t getPawnMoves(char file, int rank, int turn=WHITE_TURN) {
+
+
+uint64_t getPawnPrecomputedMoves(char file, int rank, int turn=WHITE_TURN) {
     uint64_t moves = 0;
     int pos = getPieceBitIndex(file, rank);
     if(turn == WHITE_TURN) {

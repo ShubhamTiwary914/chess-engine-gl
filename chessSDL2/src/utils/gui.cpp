@@ -9,10 +9,14 @@ void setSquareCoords(SDL_Rect &obj, int sqBase, int file, int rank){
 }
 
 
-std::string getFullPath(std::string subPath="") {
+std::string getFullPath(std::string subPath) {
     return (std::filesystem::current_path() / subPath).string();
 }
 
+const char* getFullPath(const char* path) {
+    static std::string fullPath = (std::filesystem::current_path() / path).string();
+    return fullPath.c_str();
+}
 
 
 int keyBoardPress(SDL_Event &ev){

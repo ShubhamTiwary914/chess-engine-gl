@@ -8,6 +8,9 @@ chess: \
   /usr/lib/libSDL2-2.0.so.0.3200.52 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2_image.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2.so \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2_ttf.so \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2.so \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2_ttf.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libm.so \
@@ -41,6 +44,8 @@ chess: \
   /usr/lib/libavif.so.16 \
   /usr/lib/libwebpdemux.so.2 \
   /usr/lib/libwebp.so.7 \
+  /usr/lib/libfreetype.so.6 \
+  /usr/lib/libharfbuzz.so.0 \
   /usr/lib/ld-linux-x86-64.so.2 \
   /usr/lib/libz.so.1 \
   /usr/lib/libjxl_cms.so.0.11 \
@@ -56,7 +61,11 @@ chess: \
   /usr/lib/librav1e.so.0.7 \
   /usr/lib/libSvtAv1Enc.so.2 \
   /usr/lib/libaom.so.3 \
-  /usr/lib/libbrotlicommon.so.1
+  /usr/lib/libbz2.so.1.0 \
+  /usr/lib/libglib-2.0.so.0 \
+  /usr/lib/libgraphite2.so.3 \
+  /usr/lib/libbrotlicommon.so.1 \
+  /usr/lib/libpcre2-8.so.0
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/Scrt1.o:
 
@@ -75,6 +84,12 @@ libchess_lib.a:
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2_image.so:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2.so:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2_ttf.so:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2.so:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libSDL2_ttf.so:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/libstdc++.so:
 
@@ -142,6 +157,10 @@ libchess_lib.a:
 
 /usr/lib/libwebp.so.7:
 
+/usr/lib/libfreetype.so.6:
+
+/usr/lib/libharfbuzz.so.0:
+
 /usr/lib/ld-linux-x86-64.so.2:
 
 /usr/lib/libz.so.1:
@@ -172,4 +191,12 @@ libchess_lib.a:
 
 /usr/lib/libaom.so.3:
 
+/usr/lib/libbz2.so.1.0:
+
+/usr/lib/libglib-2.0.so.0:
+
+/usr/lib/libgraphite2.so.3:
+
 /usr/lib/libbrotlicommon.so.1:
+
+/usr/lib/libpcre2-8.so.0:

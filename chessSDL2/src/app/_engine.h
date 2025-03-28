@@ -23,6 +23,11 @@ void initializeBoard();
 //select piece & request to move(1)
 int selectPiece(boardPos pos, selectedPiece &selected, bool turn);
 
+/// @brief once move selected, move piece
+/// @details handle captures, assess checks, etc.
+void movePiece(char fromFile, int fromRank, char toFile, int toRank,
+    PieceList &mainboard, BitBoardSet &whiteboard, BitBoardSet &blackboard);
+
 
 
 

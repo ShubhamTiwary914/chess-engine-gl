@@ -196,20 +196,25 @@ std::string get64Bits(uint64_t num){
 
 
 //get 64 bit as 8x8 representation (bitboard form)
-void printBitBoard(u_int64_t testboard, std::string title){
+std::string printBitBoard(u_int64_t testboard, std::string title, bool print, char setIcon){
     std::string bits = title + "\n";
     for(int rank=8; rank>=1; rank--){
         bits += intToString(rank) + "    ";
         for(int file=65; file<= 72; file++){
             int bitIndex = getPieceBitIndex(file, rank);
             if(getBit(testboard, bitIndex)){
-                bits += "1 ";
+                bits.push_back(setIcon);
+                bits += " ";
             }else {
-                bits += "0 ";
-            }   
+                bits += ". ";
+            }  
         }
         bits += "\n";
     }
     bits += "     a b c d e f g h\n\n";
-    std::cout << bits;
+    if(print){
+      std::cout << bits;
+      return 0ULL;
+    }
+    return bits;
 } 

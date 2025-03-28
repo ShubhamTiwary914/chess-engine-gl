@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20250328-1521-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.31.6"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="sardinessz"
+	OSRelease="6.12.18-1-lts"
+	OSVersion="#1 SMP PREEMPT_DYNAMIC Fri, 07 Mar 2025 18:50:18 +0000"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="AuthenticAMD"
+	VendorID="Advanced Micro Devices"
+	FamilyID="25"
+	ModelID="80"
+	ModelName="AMD Ryzen 5 7530U with Radeon Graphics"
+	ProcessorCacheSize="512"
+	NumberOfLogicalCPU="12"
+	NumberOfPhysicalCPU="6"
+	TotalVirtualMemory="0"
+	TotalPhysicalMemory="15340"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="3310.78"
+	>
+	<Testing>
+		<StartDateTime>Mar 28 20:51 IST</StartDateTime>
+		<StartTestTime>1743175300</StartTestTime>
+		<TestList/>
+		<EndDateTime>Mar 28 20:51 IST</EndDateTime>
+		<EndTestTime>1743175300</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

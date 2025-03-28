@@ -35,9 +35,15 @@ void initializeMagicTables();
 /// @param pieceID piece enum (source: utils/consts)
 /// @return bitboard of possible paths
 uint64_t getPrecomputedMove(movesSetStruct &movesSet, int pieceID, char file, int rank, bool turn=WHITE_TURN);
-uint64_t getPawnMoves(char file, int rank, int turn);
+uint64_t getPawnPrecomputedMoves(char file, int rank, int turn);
+/// @brief handles special cases for pawn: move & attack are different, en passant, promotions.
+/// @return 
+U64 filterPawnMoves(char file, int rank, uint64_t precomp, int turn, 
+    BitBoardSet &whiteboard, BitBoardSet &blackboard);
 uint64_t getKnightMoves(char file, int rank);
 uint64_t getKingMoves(char file, int rank);
+
+
 /// @brief rank + file - self  (ex:  d3 - rank 3 & file 3, but not d3 itself)
 uint64_t getRookMask(char file, int rank, bool maskEdges=true);
 /// @brief diagonal (left + right skew) - self - edges  (ex:  d3 - diagonals through d3, but not d3, and edges)
