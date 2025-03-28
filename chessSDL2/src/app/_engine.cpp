@@ -48,7 +48,7 @@ int selectPiece(boardPos pos, selectedPiece &selected, bool turn){
     if(pieceType >= KING && pieceType <= KNIGHT)
         selected.moves = getPrecomputedMove(movesSet, pieceType, pos.file, pos.rank, state.turn);
     //special case -> for pawn (promotions, attacks & moves are different, en passant)
-    selected.moves = filterPawnMoves(pos.file, pos.rank, selected.moves, turn, whiteboard, blackboard);
+    selected.moves = filterPawnMoves(pos.file, pos.rank, selected.moves, turn, whiteboard, blackboard, movesSet);
     //dynamic gen -> for sliding 
     selected.moves = filterMoveBlocks(pos.file, pos.rank, selected.moves, pieceType, turn, whiteboard, blackboard);
     selected.isSelected = true;

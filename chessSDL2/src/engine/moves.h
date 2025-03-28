@@ -9,11 +9,13 @@
 #include "utils/consts.h"
 
 
-#define moveMapType std::unordered_map<int, uint64_t> 
+
 /// @brief precomputed moves for jumping pieces + special(black pawn)
 typedef struct {
-    moveMapType moves[3]; 
-    moveMapType blackPawn;
+    U64 moves[3][64];
+    U64 blackPawn[64];
+    //adjacent (for pawn captures)
+    U64 pawnAttacks[2][64];
 } movesSetStruct;
 
 
@@ -21,7 +23,8 @@ extern uint64_t rookAttackTable[64][4096];
 extern uint64_t bishopAttackTable[64][4096]; 
 extern int rookBits[64];    
 extern int bishopBits[64];
-
+extern bool pawnAttacksSet; 
+extern int pawnAttackDirections[2][2];
 
 
 
@@ -36,10 +39,12 @@ void initializeMagicTables();
 /// @return bitboard of possible paths
 uint64_t getPrecomputedMove(movesSetStruct &movesSet, int pieceID, char file, int rank, bool turn=WHITE_TURN);
 uint64_t getPawnPrecomputedMoves(char file, int rank, int turn);
+U64 getPawnPrecomputedAttacks(char file, int rank, bool turn);
+
 /// @brief handles special cases for pawn: move & attack are different, en passant, promotions.
 /// @return 
 U64 filterPawnMoves(char file, int rank, uint64_t precomp, int turn, 
-    BitBoardSet &whiteboard, BitBoardSet &blackboard);
+    BitBoardSet &whiteboard, BitBoardSet &blackboard, movesSetStruct &movesSet);
 uint64_t getKnightMoves(char file, int rank);
 uint64_t getKingMoves(char file, int rank);
 

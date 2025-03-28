@@ -6,18 +6,23 @@ uint64_t bishopAttackTable[64][4096];
 //bits in rook-mask/bishop-mask
 int rookBits[64];    
 int bishopBits[64];
+//{{white}, {black}}
+bool pawnAttacksSet = false;
+int pawnAttackDirections[2][2] = {{7, 9},{-9,-7}};
 
 
 //#region Precomputation
-
 movesSetStruct generatePrecomputedMoves() {
     movesSetStruct  movesSet; 
     for(int rank=1; rank<=8; rank++) {
         for(int file='a'; file<='h'; file++) {
             int pos = getPieceBitIndex(file, rank);
             movesSet.moves[KING][pos] = getKingMoves(file, rank);
+            //pawn
             movesSet.moves[PAWN][pos] = getPawnPrecomputedMoves(file, rank, WHITE_TURN);
             movesSet.blackPawn[pos] = getPawnPrecomputedMoves(file, rank, BLACK_TURN);
+            movesSet.pawnAttacks[WHITE_TURN][pos] = getPawnPrecomputedAttacks(file, rank, WHITE_TURN);
+            movesSet.pawnAttacks[BLACK_TURN][pos] = getPawnPrecomputedAttacks(file, rank, BLACK_TURN);
             movesSet.moves[KNIGHT][pos] = getKnightMoves(file, rank);
         }
     }
@@ -68,8 +73,27 @@ uint64_t filterMoveBlocks(char file, int rank, uint64_t precompMoves, int pieceT
 
 
 U64 filterPawnMoves(char file, int rank, uint64_t precomp, int turn, 
-    BitBoardSet &whiteboard, BitBoardSet &blackboard){
-       return precomp; 
+    BitBoardSet &whiteboard, BitBoardSet &blackboard, movesSetStruct &movesSet){
+    int pos = getPieceBitIndex(file, rank);
+    int blocker;  
+    //captures -> if target tiles has opp piece (non king) 
+    if(turn == WHITE_TURN){
+        precomp |= (blackboard.getUnion() & movesSet.pawnAttacks[turn][pos]);
+        blocker = pos + 8;
+    }
+    else if(turn == BLACK_TURN){
+        precomp |= (whiteboard.getUnion() & movesSet.pawnAttacks[turn][pos]);
+        blocker = pos - 8;
+    }
+    //forward piece blocker -> don't capture
+    if(blocker >= 0 && blocker <= 63){
+        if(
+            (turn == WHITE_TURN && getBit(blackboard.getUnion(), blocker)) ||
+            (turn == BLACK_TURN && getBit(whiteboard.getUnion(), blocker)) 
+        )
+            clearBit(precomp, blocker);
+    }
+    return precomp;
 }
 
 
@@ -78,7 +102,7 @@ uint64_t getPawnPrecomputedMoves(char file, int rank, int turn=WHITE_TURN) {
     uint64_t moves = 0;
     int pos = getPieceBitIndex(file, rank);
     if(turn == WHITE_TURN) {
-        // One square forward
+        //square forward
         int newPos = pos + 8;
         if(newPos < 64) {
             setBit(moves, newPos);
@@ -86,7 +110,6 @@ uint64_t getPawnPrecomputedMoves(char file, int rank, int turn=WHITE_TURN) {
             if(rank == 2) {
                 int newPos2 = newPos + 8;
                 if (newPos2 < 64) setBit(moves, newPos2); 
-
             }
         }
     }
@@ -101,10 +124,24 @@ uint64_t getPawnPrecomputedMoves(char file, int rank, int turn=WHITE_TURN) {
                 if (newPos2 >= 0) setBit(moves, newPos2); 
             }
         }
-    }
+    } 
     return moves;
 }
 
+
+U64 getPawnPrecomputedAttacks(char file, int rank, bool turn){
+    int pos = getPieceBitIndex(file, rank);
+    U64 moves = 0;
+    for(int steps: pawnAttackDirections[turn]){
+        int nextpos = pos + steps;
+        int prevpos = pos - steps;
+        if(nextpos <= 63)
+            setBit(moves, nextpos);
+        if(prevpos >= 0)
+            setBit(moves, prevpos);
+    }
+    return moves;
+}
 
 
 uint64_t getKnightMoves(char file, int rank) {
