@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/chess_test.dir/link.d CMakeFiles/chess_test.dir/src/test/force.cpp.o CMakeFiles/chess_test.dir/src/test/init.cpp.o -o chess_test  libchess_lib.a lib/libgtest.a lib/libgtest_main.a lib/libgtest.a
