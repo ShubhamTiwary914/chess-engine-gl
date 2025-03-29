@@ -16,7 +16,7 @@ SDL_Renderer *logScreen = nullptr;
 TTF_Font* font;
 int fontSize = 18;
 std::string fontFamily = "jetbrains_var";
-bool LOG_MODE = true;
+bool LOG_MODE = false;
 
 
 int initSDL(){

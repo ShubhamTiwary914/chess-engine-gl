@@ -37,6 +37,7 @@ using U8 = uint8_t;
  */
 void BREAKPOINT(bool condition, const std::string &message);
 
+enum LogLevel {DEBUG, INFO, WARN, ERROR};
 
 
 //map piece char -> piece ID (exusing U64 = uint64_t;:  k/K->0, q/Q->1, ...)

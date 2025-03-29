@@ -1878,6 +1878,7 @@ CMakeFiles/chess_lib.dir/src/engine/boards.cpp.o: /home/dev/work/chess-engine-gl
 CMakeFiles/chess_lib.dir/src/engine/moves.cpp.o: /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.cpp \
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/boards.h \
+  /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/engine.h \
@@ -2345,6 +2346,7 @@ CMakeFiles/chess_lib.dir/src/engine/state.cpp.o: /home/dev/work/chess-engine-gl/
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/boards.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/engine/moves.h \
+  /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/gui.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h \
   /home/dev/work/chess-engine-gl/chessSDL2/src/utils/engine.h \

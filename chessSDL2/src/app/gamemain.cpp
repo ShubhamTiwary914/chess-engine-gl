@@ -8,6 +8,8 @@ int selectedSquare = -1;
 
 
 void initializeGame(){
+    LOG_MODE = true;
+
     //engine startup.
     initializeBoard();
     //gui
@@ -69,11 +71,13 @@ void mouseClicker(boardPos &pos, SDL_Event &ev){
     renderBoard(selected);
     renderPieces(mainboard);
 
-    U64 fullBits = blackboard.getUnion() | whiteboard.getUnion();
-    renderString(
-        printBitBoard(blackboard.getUnion(), "BlackBoard", false, 'b')
-        + "\n\n" +
-        printBitBoard(whiteboard.getUnion(), "WhiteBoard", false, 'w')
-    );
+    if(LOG_MODE){
+        U64 fullBits = blackboard.getUnion() | whiteboard.getUnion();
+        renderString(
+            printBitBoard(blackboard.getUnion(), "BlackBoard", false, 'b')
+            + "\n\n" +
+            printBitBoard(whiteboard.getUnion(), "WhiteBoard", false, 'w')
+        );
+    }
     updateScreen();
 }

@@ -7,6 +7,7 @@
 #include "engine/boards.h"
 #include "utils/engine.h"
 #include "utils/consts.h"
+#include "engine/state.h"
 
 
 
@@ -44,7 +45,7 @@ U64 getPawnPrecomputedAttacks(char file, int rank, bool turn);
 /// @brief handles special cases for pawn: move & attack are different, en passant, promotions.
 /// @return 
 U64 filterPawnMoves(char file, int rank, uint64_t precomp, int turn, 
-    BitBoardSet &whiteboard, BitBoardSet &blackboard, movesSetStruct &movesSet);
+    BitBoardSet &whiteboard, BitBoardSet &blackboard, movesSetStruct &movesSet, GameState &state);
 uint64_t getKnightMoves(char file, int rank);
 uint64_t getKingMoves(char file, int rank);
 

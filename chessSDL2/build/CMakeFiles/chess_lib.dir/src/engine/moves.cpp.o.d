@@ -361,4 +361,5 @@ CMakeFiles/chess_lib.dir/src/engine/moves.cpp.o: \
  /usr/include/c++/14.2.1/bits/fs_ops.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h \
  /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h \
+ /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h \
  /usr/include/c++/14.2.1/bitset

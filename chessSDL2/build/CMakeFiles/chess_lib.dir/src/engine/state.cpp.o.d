@@ -359,4 +359,5 @@ CMakeFiles/chess_lib.dir/src/engine/state.cpp.o: \
  /usr/include/c++/14.2.1/bits/unique_ptr.h \
  /usr/include/c++/14.2.1/bits/fs_dir.h \
  /usr/include/c++/14.2.1/bits/fs_ops.h \
- /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h
+ /home/dev/work/chess-engine-gl/chessSDL2/src/utils/consts.h \
+ /home/dev/work/chess-engine-gl/chessSDL2/src/engine/state.h

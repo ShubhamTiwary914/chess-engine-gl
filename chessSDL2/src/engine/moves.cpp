@@ -73,8 +73,9 @@ uint64_t filterMoveBlocks(char file, int rank, uint64_t precompMoves, int pieceT
 
 
 U64 filterPawnMoves(char file, int rank, uint64_t precomp, int turn, 
-    BitBoardSet &whiteboard, BitBoardSet &blackboard, movesSetStruct &movesSet){
+    BitBoardSet &whiteboard, BitBoardSet &blackboard, movesSetStruct &movesSet, GameState &state){
     int pos = getPieceBitIndex(file, rank);
+    int srcfile = parseFileID(file);
     int blocker;  
     //captures -> if target tiles has opp piece (non king) 
     if(turn == WHITE_TURN){
@@ -92,6 +93,22 @@ U64 filterPawnMoves(char file, int rank, uint64_t precomp, int turn,
             (turn == BLACK_TURN && getBit(whiteboard.getUnion(), blocker)) 
         )
             clearBit(precomp, blocker);
+    }
+    //en-passant 
+    if(state.is_enPassant() && state.get_enPassant_side() != turn){
+        int targetfile = state.get_enPassant_file();
+        int vertpos = (turn == WHITE_TURN) ? 8 : -8;
+        int horipos;
+        //right by 1
+        if(abs(targetfile-srcfile)==1)
+            horipos = (targetfile - srcfile);
+        //check if target is valid (fix for rank match check)
+        bool isValidPawn = (turn == WHITE_TURN) ?  
+            (getBit(blackboard.getPiece(PAWN), pos+horipos)) :  
+            (getBit(whiteboard.getPiece(PAWN), pos+horipos)); 
+        //confirm, so allow attack
+        if(isValidPawn)
+            setBit(precomp, pos+vertpos+horipos);
     }
     return precomp;
 }
@@ -139,6 +156,9 @@ U64 getPawnPrecomputedAttacks(char file, int rank, bool turn){
             setBit(moves, nextpos);
         if(prevpos >= 0)
             setBit(moves, prevpos);
+        //fix: pawn capturing on other side of edge (still in edge but not valid) 
+        if(file == 'a' || file == 'h')
+            moves &= ~(getFileBits('h') | getFileBits('a'));
     }
     return moves;
 }

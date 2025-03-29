@@ -17,6 +17,8 @@ std::string format(const std::string& fmt, Args... args) {
 }
 
 
+
+
 uint64_t generateRandomU64(uint64_t seed = std::random_device{}()) {
     static std::mt19937_64 gen(seed);
     return gen();
@@ -85,6 +87,11 @@ void clearSelection(selectedPiece &selected){
 //>Bitwise operations
 //set ith bit from left  (assumes 0 based indexing)
 void setBit(uint64_t &n, int i){
+   n = (n | (1ULL<<(i)));
+}
+
+void setBit(U8 &n, int i){
+   assert(i>=0 && i<=7);
    n = (n | (1ULL<<(i)));
 }
 
@@ -218,3 +225,11 @@ std::string printBitBoard(u_int64_t testboard, std::string title, bool print, ch
     }
     return bits;
 } 
+
+
+std::string printBitsU8(U8 num){
+  std::string bits = "";
+  for(int i=7; i>=0; i--)
+    bits += getBit(num, i);
+  return bits;
+}

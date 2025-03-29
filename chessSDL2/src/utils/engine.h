@@ -13,12 +13,21 @@
 
 
 
-
-
 int getPieceBitIndex(char file, int rank);
 void println();
+
+
+template <typename... Args>
+void logger(LogLevel level, const Args&... args) {
+    const char* levelStr[] = { "DEBUG", "INFO", "WARN", "ERROR" };
+    std::ostringstream oss;
+    (oss << ... << args);  
+    std::cout << "[" << levelStr[level] << "] " << oss.str() << std::endl;
+}
+
 template<typename... Args>
 std::string format(const std::string& fmt, Args... args);
+
 uint64_t generateRandomU64(uint64_t seed);
 double execPerft(const std::function<void()> &func, int precision);
 std::string intToString(int num); 
@@ -41,6 +50,7 @@ void clearSelection(selectedPiece &selected);
 //>Bitwise operations
 //set ith bit from left  (assumes 0 based indexing)
 void setBit(uint64_t &n, int i);
+void setBit(U8 &n, int i);
 
 //get ith bit from left  (assumes 0 based indexing)
 bool getBit(uint64_t n, int i);
@@ -74,6 +84,9 @@ std::string get64Bits(uint64_t num);
 //get 64 bit as 8x8 representation (bitboard form)
 std::string printBitBoard(u_int64_t testboard, std::string title="", 
     bool print=true, char setIcon='1');
+
+std::string printBitsU8(U8 num);
+
 
 
 
