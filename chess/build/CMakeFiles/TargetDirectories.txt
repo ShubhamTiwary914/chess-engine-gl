@@ -1,8 +1,0 @@
-/home/sardiness/Desktop/projects/chess/build/CMakeFiles/OpenGLProject.dir
-/home/sardiness/Desktop/projects/chess/build/CMakeFiles/test_chess.dir
-/home/sardiness/Desktop/projects/chess/build/CMakeFiles/edit_cache.dir
-/home/sardiness/Desktop/projects/chess/build/CMakeFiles/rebuild_cache.dir
-/home/sardiness/Desktop/projects/chess/build/include/gtest/googletest/CMakeFiles/gtest.dir
-/home/sardiness/Desktop/projects/chess/build/include/gtest/googletest/CMakeFiles/gtest_main.dir
-/home/sardiness/Desktop/projects/chess/build/include/gtest/googletest/CMakeFiles/edit_cache.dir
-/home/sardiness/Desktop/projects/chess/build/include/gtest/googletest/CMakeFiles/rebuild_cache.dir

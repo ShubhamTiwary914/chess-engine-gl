@@ -1,3 +1,0 @@
-/home/sardiness/Desktop/pong/build/CMakeFiles/OpenGLProject.dir
-/home/sardiness/Desktop/pong/build/CMakeFiles/edit_cache.dir
-/home/sardiness/Desktop/pong/build/CMakeFiles/rebuild_cache.dir

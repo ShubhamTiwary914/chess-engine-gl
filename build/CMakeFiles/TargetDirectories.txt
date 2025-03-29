@@ -1,0 +1,14 @@
+/home/dev/work/chess-engine-sdl/build/CMakeFiles/chess_lib.dir
+/home/dev/work/chess-engine-sdl/build/CMakeFiles/chess.dir
+/home/dev/work/chess-engine-sdl/build/CMakeFiles/chess_test.dir
+/home/dev/work/chess-engine-sdl/build/CMakeFiles/test.dir
+/home/dev/work/chess-engine-sdl/build/CMakeFiles/edit_cache.dir
+/home/dev/work/chess-engine-sdl/build/CMakeFiles/rebuild_cache.dir
+/home/dev/work/chess-engine-sdl/build/include/glm/CMakeFiles/test.dir
+/home/dev/work/chess-engine-sdl/build/include/glm/CMakeFiles/edit_cache.dir
+/home/dev/work/chess-engine-sdl/build/include/glm/CMakeFiles/rebuild_cache.dir
+/home/dev/work/chess-engine-sdl/build/include/googletest/CMakeFiles/gtest.dir
+/home/dev/work/chess-engine-sdl/build/include/googletest/CMakeFiles/gtest_main.dir
+/home/dev/work/chess-engine-sdl/build/include/googletest/CMakeFiles/test.dir
+/home/dev/work/chess-engine-sdl/build/include/googletest/CMakeFiles/edit_cache.dir
+/home/dev/work/chess-engine-sdl/build/include/googletest/CMakeFiles/rebuild_cache.dir
