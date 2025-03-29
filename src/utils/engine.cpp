@@ -52,6 +52,7 @@ std::string intToString(int num) {
 
 
 
+
 int parseFileID(char file){
   //File = A, B, C, ..., H   (lower or upper)
   assert(file >= 'a' && file <= 'h' || file >= 'A' && file <= 'H'); 
@@ -103,6 +104,12 @@ bool getBit(uint64_t n, int i){
 void clearBit(uint64_t &n, int i){
   n = (n & ~(1ULL << (i)));
 }
+
+void clearBit(U8 &n, int i){
+  assert(i>=0 && i<=7);
+  n = (n & ~(1ULL << (i)));
+}
+
 //toggle ith bit from left  (assumes 0 based indexing)
 void toggle(uint64_t &n, int i){
   n = (n ^ (1ULL << (i)));
@@ -230,6 +237,6 @@ std::string printBitBoard(u_int64_t testboard, std::string title, bool print, ch
 std::string printBitsU8(U8 num){
   std::string bits = "";
   for(int i=7; i>=0; i--)
-    bits += getBit(num, i);
+    bits += intToString(getBit(num, i));
   return bits;
 }

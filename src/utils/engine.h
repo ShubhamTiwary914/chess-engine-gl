@@ -56,6 +56,7 @@ void setBit(U8 &n, int i);
 bool getBit(uint64_t n, int i);
 //clear ith bit from left  (assumes 0 based indexing)
 void clearBit(uint64_t &n, int i);
+void clearBit(U8 &n, int i);
 //toggle ith bit from left  (assumes 0 based indexing)
 void toggle(uint64_t &n, int i);
 

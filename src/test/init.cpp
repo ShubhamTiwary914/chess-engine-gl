@@ -79,11 +79,24 @@ int main(int argc, char **argv){
 
 
 
+
+
+
+
 void check()
 {
     initializeBoard(); 
-    std::cout << piecesCharMap['Q'] << std::endl;
-    std::cout << piecesCharMap['q'] << std::endl;
-    std::cout << piecesCharMap['k'] << std::endl;
-    std::cout << piecesCharMap['K'] << std::endl;
+    bool turn = WHITE_TURN;
+    bool leftSide = false;
+
+    whiteboard.unsetPiece(BISHOP, 'f', 1);
+    whiteboard.unsetPiece(KNIGHT, 'g', 1);
+    printBitBoard(whiteboard.getUnion(), "Whiteboard All:");
+
+    state.markCastling(WHITE_TURN, leftSide);
+    logger(DEBUG, "Castling: ", printBitsU8(state.checkCastlingAvailable(turn, leftSide)) );
+
+    
+
+    logger(DEBUG, (char)('a'+2));
 }

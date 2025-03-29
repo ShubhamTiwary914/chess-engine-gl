@@ -26,6 +26,15 @@ const uint64_t DIAGONAL_LEFT_BASE = 0x0102040810204080;  //   diagonal in form: 
 const uint64_t DIAGONAL_RIGHT_BASE = 0x8040201008040201;   //  diagonal in form: \
 
 
+const uint64_t KING_LEFT_ROOK_RANK_1= 14;
+const uint64_t KING_RIGHT_ROOK_RANK_1 = 96;
+const uint64_t KING_LEFT_ROOK_RANK_8 = 1008806316530991104ULL;
+const uint64_t KING_RIGHT_ROOK_RANK_8 = 6917529027641081856ULL; 
+
+
+
+
+
 /// @brief masking the 1, 1&2, 1&2&3, ... ranks
 const U64 FILE_MASKS[8] = {
     72340172838076673ULL,

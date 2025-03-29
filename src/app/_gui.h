@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cassert>
 #include <unordered_map>
+#include <vector>
 
 #include "engine/boards.h"
 #include "utils/gui.h"
@@ -21,8 +22,8 @@ extern int scaleX;
 extern int scaleY;
 const double pieceSpriteGap = 0.45;
 //logger window
-extern SDL_Window *logWindow;
-extern SDL_Renderer *logScreen;
+extern std::vector<SDL_Window *> logWindows;
+extern std::vector<SDL_Renderer *> logScreens;
 extern TTF_Font* font;
 extern int fontSize;
 extern std::string fontFamily;
@@ -40,4 +41,9 @@ void updateScreen();
 
 void renderBoard(selectedPiece &selected);
 void renderPieces(PieceList &mainboard);
-void renderString(std::string log);
+
+//log window manager 
+int createLogWindow(const char* title, int x, int y, int w, int h);
+void renderStringToWindow(int windowIndex, std::string log);
+void closeLogWindow(int windowIndex);
+void closeAllLogWindows();

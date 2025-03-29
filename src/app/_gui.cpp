@@ -1,5 +1,5 @@
 #include "./_gui.h"
-
+#include <sstream>
 
 // GUI globals
 SDL_Window *window = nullptr;
@@ -11,13 +11,73 @@ int scaleX = 0;
 int scaleY = 0;
 
 //logger
-SDL_Window *logWindow = nullptr;
-SDL_Renderer *logScreen = nullptr;
+std::vector<SDL_Window *> logWindows;
+std::vector<SDL_Renderer *> logScreens;
 TTF_Font* font;
 int fontSize = 18;
 std::string fontFamily = "jetbrains_var";
 bool LOG_MODE = false;
 
+
+
+int createLogWindow(const char* title, int x, int y, int w, int h) {
+    if (!LOG_MODE) return -1; 
+    SDL_Window* newWindow = SDL_CreateWindow(title, x, y, w, h, SDL_WINDOW_RESIZABLE);
+    if (!newWindow) return -1;
+    SDL_Renderer* newRenderer = SDL_CreateRenderer(newWindow, -1, SDL_RENDERER_ACCELERATED);
+    if (!newRenderer) {
+        SDL_DestroyWindow(newWindow);
+        return -1;
+    }
+    SDL_SetRenderDrawColor(newRenderer, 0xff, 0xff, 0xff, 1);
+    SDL_RenderClear(newRenderer);
+    logWindows.push_back(newWindow);
+    logScreens.push_back(newRenderer);
+    //new window index
+    return logWindows.size() - 1; 
+}
+
+void renderStringToWindow(int windowIndex, std::string log) {
+    if (!LOG_MODE || windowIndex < 0 || windowIndex >= logWindows.size()) return;
+    SDL_Renderer* targetRenderer = logScreens[windowIndex];
+    SDL_SetRenderDrawColor(targetRenderer, 255, 255, 255, 255);
+    SDL_RenderClear(targetRenderer);
+    SDL_Color textColor = {0, 0, 0, 255};
+    int lineHeight = fontSize + 2;
+    int yPos = 10;
+    std::string line;
+    std::stringstream ss(log);
+    while (std::getline(ss, line)) {
+        if (line.empty()) continue;
+        SDL_Surface* textSurface = TTF_RenderText_Solid(font, line.c_str(), textColor);
+        BREAKPOINT(textSurface, "Failed to create text surface: %s"+ (std::string)TTF_GetError());
+        SDL_Texture* textTexture = SDL_CreateTextureFromSurface(targetRenderer, textSurface);
+        BREAKPOINT(textTexture, "Texture for Font not created!");
+        SDL_Rect destRect = {10, yPos, textSurface->w, textSurface->h};
+        SDL_RenderCopy(targetRenderer, textTexture, NULL, &destRect);
+        SDL_FreeSurface(textSurface);
+        SDL_DestroyTexture(textTexture);
+        yPos += lineHeight;
+    }
+    SDL_RenderPresent(targetRenderer);
+}
+
+void closeLogWindow(int windowIndex) {
+    if (windowIndex < 0 || windowIndex >= logWindows.size()) return;
+    SDL_DestroyRenderer(logScreens[windowIndex]);
+    SDL_DestroyWindow(logWindows[windowIndex]);
+    logScreens.erase(logScreens.begin() + windowIndex);
+    logWindows.erase(logWindows.begin() + windowIndex);
+}
+
+void closeAllLogWindows() {
+    for (size_t i = 0; i < logWindows.size(); i++) {
+        SDL_DestroyRenderer(logScreens[i]);
+        SDL_DestroyWindow(logWindows[i]);
+    }
+    logScreens.clear();
+    logWindows.clear();
+}
 
 int initSDL(){
     window = SDL_CreateWindow("Chess Master", baseCoords.x, baseCoords.y, baseCoords.w, baseCoords.h, SDL_WINDOW_RESIZABLE);
@@ -26,17 +86,17 @@ int initSDL(){
     assert(screen);
     SDL_SetRenderDrawColor(screen, 0xff, 0xff, 0xff, 1);
     SDL_RenderClear(screen);
-
     if(LOG_MODE){
-        logWindow = SDL_CreateWindow("Chess Log Window", baseCoords.x, baseCoords.y*2, baseCoords.w, baseCoords.h, SDL_WINDOW_RESIZABLE);
-        logScreen = SDL_CreateRenderer(logWindow, -1, SDL_RENDERER_ACCELERATED);
-        SDL_SetRenderDrawColor(logScreen, 0xff, 0xff, 0xff, 1);
-        SDL_RenderClear(logScreen);
+        //init TTF fonts (SDL_TTF)
+        if (!font) {
+            BREAKPOINT((TTF_Init() != -1), "SDL_TTF package properly not init");
+            const char *fontPath = getFullPath(((std::string)("assets/fonts/" + fontFamily +".ttf")).c_str() );
+            font = TTF_OpenFont(fontPath, fontSize);
+            BREAKPOINT(font, "Font not loaded!");
+        }
     }
     return 0;
 }
-
-
 
 void renderBoard(selectedPiece &selected) {
     int i = 63;
@@ -79,7 +139,6 @@ void renderBoard(selectedPiece &selected) {
     }
 }
 
-
 void renderPieces(PieceList &mainboard){
     //reduce sprite size (100%):  (100-x)% 
     double spriteDelta = (1.0f - pieceSpriteGap);
@@ -99,60 +158,16 @@ void renderPieces(PieceList &mainboard){
     }
 }
 
-
-void renderString(std::string log){
-    // Set background color to white
-    SDL_SetRenderDrawColor(logScreen, 255, 255, 255, 255);
-    SDL_RenderClear(logScreen);
-
-    SDL_Color textColor = {0, 0, 0, 255};
-    int lineHeight = fontSize + 2; // Add some spacing between lines
-    int yPos = 10; // Starting y position
-
-    // Split text by newlines
-    std::string line;
-    std::stringstream ss(log);
-    while (std::getline(ss, line)) {
-        if (line.empty()) continue; // Skip empty lines
-
-        SDL_Surface* textSurface = TTF_RenderText_Solid(font, line.c_str(), textColor);
-        BREAKPOINT(textSurface, "Failed to create text surface: %s"+ (std::string)TTF_GetError()); 
-        
-        // Create texture from surface
-        SDL_Texture* textTexture = SDL_CreateTextureFromSurface(logScreen, textSurface);
-        BREAKPOINT(textTexture, "Texture for Font not created!");
-        
-        // Set up destination rectangle
-        SDL_Rect destRect = {10, yPos, textSurface->w, textSurface->h};
-        
-        // Render the text
-        SDL_RenderCopy(logScreen, textTexture, NULL, &destRect);
-        
-        // Clean up
-        SDL_FreeSurface(textSurface);
-        SDL_DestroyTexture(textTexture);
-        
-        // Move to next line
-        yPos += lineHeight;
-    }
-}
-
-
 //fill board -> fill pieces -> update screen
 void updateScreen(){
     SDL_RenderPresent(screen);
-    if(LOG_MODE)
-        SDL_RenderPresent(logScreen);
 }
-
-
 
 void resizeHandler(){
     int currentW, currentH;
     SDL_GetWindowSize(window, &currentW, &currentH);
     sqBase = std::min(currentW/8, currentH/8);
 }
-
 
 void preLoadTextures(std::unordered_map<char, int> &piecesCharMap){
     //For font (if log mode)
@@ -177,9 +192,13 @@ void preLoadTextures(std::unordered_map<char, int> &piecesCharMap){
     }
 }
 
-
 void exitGame(){
     SDL_DestroyRenderer(screen);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+    SDL_DestroyWindow(window);
+    closeAllLogWindows();
+    if (font) {
+        TTF_CloseFont(font);
+        font = nullptr;
+    }
+    SDL_Quit();
 }

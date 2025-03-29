@@ -1,29 +1,33 @@
 #include "gamemain.h"
 
-
-
 selectedPiece selected = {'\0', 'a', 1, 0, false};
 int selectedSquare = -1;
 
+int boardLogWindow = -1;
+int stateLogWindow = -1;
 
 
 void initializeGame(){
     //LOG_MODE = true;
-
     //engine startup.
     initializeBoard();
     //gui
     initSDL();
     preLoadTextures(piecesCharMap);
+    
+    //log windows create 
+    boardLogWindow = createLogWindow("Board State", baseCoords.x + baseCoords.w*2, baseCoords.y + baseCoords.h/2, baseCoords.w, baseCoords.h*1.5);     
+    stateLogWindow = createLogWindow("Game State", baseCoords.x + baseCoords.w*2, baseCoords.y + baseCoords.h*2.2, baseCoords.w, baseCoords.h);
+    
     renderBoard(selected);
     renderPieces(mainboard);
     updateScreen();
+
+    logManager();
     //event-loop & end
     gameCycle();
     exitGame();
 }
-
-
 
 void gameCycle(){
     bool running = true;
@@ -54,6 +58,7 @@ void gameCycle(){
 }
 
 
+
 void mouseClicker(boardPos &pos, SDL_Event &ev){
     pos = mouseClickedSquare(ev, sqBase);
     //in bounds
@@ -69,15 +74,32 @@ void mouseClicker(boardPos &pos, SDL_Event &ev){
     else
         clearSelection(selected);
     renderBoard(selected);
-    renderPieces(mainboard);
+    renderPieces(mainboard); 
 
-    if(LOG_MODE){
+    if(LOG_MODE)
+        logManager();
+    updateScreen();
+}
+
+
+void logManager(){
+    if (boardLogWindow >= 0)
+    {
         U64 fullBits = blackboard.getUnion() | whiteboard.getUnion();
-        renderString(
-            printBitBoard(blackboard.getUnion(), "BlackBoard", false, 'b')
-            + "\n\n" +
-            printBitBoard(whiteboard.getUnion(), "WhiteBoard", false, 'w')
+        renderStringToWindow(boardLogWindow,
+            printBitBoard(blackboard.getUnion(), "BlackBoard", false, 'b') + 
+            printBitBoard(whiteboard.getUnion(), "\n\nWhiteBoard", false, 'w') 
         );
     }
-    updateScreen();
+
+    if (stateLogWindow >= 0)
+    {
+        std::string castlingBits = printBitsU8(state.castling);
+        renderStringToWindow(stateLogWindow,
+            "Castling White:  " + castlingBits + "\n\n" + "Left Castling: " + intToString(state.checkCastlingAvailable(WHITE_TURN, true)) 
+            + "\nRight Castling: " + intToString(state.checkCastlingAvailable(WHITE_TURN, false)) + "\n\n" +
+            "\n\n\nCastling Black:  " + castlingBits + "\n\n" + "Left Castling: " + intToString(state.checkCastlingAvailable(BLACK_TURN, true)) + 
+            "\nRight Castling: " + intToString(state.checkCastlingAvailable(BLACK_TURN, false)) + "\n\n"
+        );
+    }
 }

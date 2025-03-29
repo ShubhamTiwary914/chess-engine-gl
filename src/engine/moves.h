@@ -48,6 +48,7 @@ U64 filterPawnMoves(char file, int rank, uint64_t precomp, int turn,
     BitBoardSet &whiteboard, BitBoardSet &blackboard, movesSetStruct &movesSet, GameState &state);
 uint64_t getKnightMoves(char file, int rank);
 uint64_t getKingMoves(char file, int rank);
+U64 getKingCastlingCheck(char file, int rank, BitBoardSet &whiteboard, BitBoardSet &blackboard, GameState &state);
 
 
 /// @brief rank + file - self  (ex:  d3 - rank 3 & file 3, but not d3 itself)

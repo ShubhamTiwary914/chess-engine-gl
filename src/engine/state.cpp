@@ -47,3 +47,34 @@ void GameState::set_enPassant(bool side, int fileID){
         setBit(this->enpassant, 3);
     this->enpassant += fileID; 
 }
+
+
+U8 GameState::checkCastlingAvailable(bool turn, bool leftCheck){
+    U8 castlingSide;
+    // castling & 00000011  (white)
+    if(turn == WHITE_TURN)
+        castlingSide = (this->castling & 3);
+    // castling & 00001100 >> 2 (black)
+    else
+        castlingSide =  ((this->castling & 12) >> 2);
+    // 00000011 >> 1 (left)
+    if(leftCheck)
+        return !(castlingSide >> 1);
+    // 00000011 - 0000010 (right)
+    clearBit(castlingSide, 1);
+    return !castlingSide; 
+}
+
+
+void GameState::markCastling(bool turn, bool leftSide, bool whole){
+   int pos = (turn == WHITE_TURN) ? 1 : 3;
+   //mark both sides (king moved)
+   if(whole){
+        setBit(this->castling, pos); setBit(this->castling, pos-1);
+        return;
+   } 
+   if(leftSide)
+        setBit(this->castling, pos);
+   else
+        setBit(this->castling, pos-1);
+}

@@ -14,6 +14,8 @@ public:
     /// @brief shows file of piece + side that did en-passant (last one full move)
     /// @details n000kxxx (8-bit) = (n = on/off) (k = side) & (xxx = file i.e: 0-7)
     U8 enpassant = 0;
+    /// @brief 4 bits that says if castling is available: 0 on that bit means available 
+    /// @details (4 bits):  2 black + 2 white (black-left/black-right/white-left/white-right)
     U8 castling = 0;
 
     // history (over turns)
@@ -33,18 +35,20 @@ public:
     void move_state(std::string event);
 
     //> en-passant
-
     /// @brief n000kxxx & 00001000 (8)
     bool get_enPassant_side();
-
     /// @brief n000kxxx & 00000111 (7)
     int get_enPassant_file();
-
     /// @brief n000kxxx & 10000000 (128)
     bool is_enPassant();
-
     void set_enPassant(bool side, int fileID);
-};
+
+    //>castling
+    /// @brief two bit no (left/right) of that turn
+    /// @details 1st bit = left, 0th bit = right
+    U8 checkCastlingAvailable(bool turn, bool leftCheck=false);
+    void markCastling(bool turn, bool leftSide, bool whole=false);
+};  
 
 
 #endif

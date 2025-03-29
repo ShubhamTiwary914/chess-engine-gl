@@ -135,7 +135,7 @@ uint64_t getPawnPrecomputedMoves(char file, int rank, int turn=WHITE_TURN) {
         int newPos = pos - 8;
         if(newPos >= 0) {
             setBit(moves, newPos);
-            //two squares on start rank (rank 7)
+            //two squares on start rank (rank 7))
             if(rank == 7) {
                 int newPos2 = newPos - 8;
                 if (newPos2 >= 0) setBit(moves, newPos2); 
@@ -197,6 +197,24 @@ uint64_t getKingMoves(char file, int rank) {
     return moves;
 }
 
+//check castling -> return marks to add if set
+U64 getKingCastlingCheck(char file, int rank, BitBoardSet &whiteboard, BitBoardSet &blackboard, GameState &state){
+    U64 allPieces = whiteboard.getUnion() | blackboard.getUnion();
+    U64 rankMask = (state.turn == WHITE_TURN) ? RANK_1_BITS : (RANK_1_BITS << 56);
+    U64 kingrook_leftMask = (state.turn == WHITE_TURN) ? KING_LEFT_ROOK_RANK_1 : KING_LEFT_ROOK_RANK_8;
+    U64 kingrook_rightMask = (state.turn == WHITE_TURN) ? KING_RIGHT_ROOK_RANK_1 : KING_RIGHT_ROOK_RANK_8;
+    U64 moves = 0Ull;
+    int bitID = getPieceBitIndex(file, rank);
+    //left castling available + space free
+    if(state.checkCastlingAvailable(state.turn, true) && !(allPieces & rankMask & kingrook_leftMask)){
+       setBit(moves, bitID-2);
+    }
+    //right castling available + space free
+    if(state.checkCastlingAvailable(state.turn) && !(allPieces & rankMask & kingrook_rightMask) ){
+        setBit(moves, bitID+2);
+    }
+    return moves; 
+}
 
 
 //#region Magic Bitboards

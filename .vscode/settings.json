@@ -68,6 +68,16 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "variant": "cpp",
-        "readme": "cpp"
+        "readme": "cpp",
+        "bitset": "cpp",
+        "charconv": "cpp",
+        "complex": "cpp",
+        "expected": "cpp",
+        "format": "cpp",
+        "ranges": "cpp",
+        "stdfloat": "cpp",
+        "text_encoding": "cpp",
+        "cfenv": "cpp",
+        "valarray": "cpp"
     }
 }

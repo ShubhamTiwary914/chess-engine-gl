@@ -18,6 +18,7 @@ void initializeGame();
 void gameCycle();
 void mouseClicker(boardPos &pos, SDL_Event &ev);
 
+void logManager();
 
 
 #endif

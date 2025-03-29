@@ -60,6 +60,18 @@ extern const uint64_t RANK_1_BITS;
 extern const uint64_t DIAGONAL_RIGHT_BASE;
 extern const uint64_t DIAGONAL_LEFT_BASE;
 
+
+/// @brief mask between king & rook in rank 1 (left side)
+extern const uint64_t KING_LEFT_ROOK_RANK_1;
+/// @brief mask between king & rook in rank 1 (right side)
+extern const uint64_t KING_RIGHT_ROOK_RANK_1;
+/// @brief mask between king & rook in rank 8 (left side)
+extern const uint64_t KING_LEFT_ROOK_RANK_8;
+/// @brief mask between king & rook in rank 8 (right side)
+extern const uint64_t KING_RIGHT_ROOK_RANK_8; 
+
+
+
 extern const uint64_t RANK_MASKS[8];
 extern const uint64_t FILE_MASKS[8];
 
