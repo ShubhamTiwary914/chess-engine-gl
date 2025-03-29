@@ -8,7 +8,7 @@ int selectedSquare = -1;
 
 
 void initializeGame(){
-    LOG_MODE = true;
+    //LOG_MODE = true;
 
     //engine startup.
     initializeBoard();

@@ -9,12 +9,12 @@ void BREAKPOINT(bool condition, const std::string &message) {
 }
 
 std::unordered_map<char, int> piecesCharMap = {
-    {'k', KING},   {'K', KING},
-    {'p', PAWN},   {'P', PAWN},
+    {'r', ROOK},   {'R', ROOK},
     {'n', KNIGHT}, {'N', KNIGHT},
     {'b', BISHOP}, {'B', BISHOP},
-    {'r', ROOK},   {'R', ROOK},
     {'q', QUEEN},  {'Q', QUEEN},
+    {'k', KING},   {'K', KING},
+    {'p', PAWN},   {'P', PAWN},
     {'E', NONE}   
 };
 

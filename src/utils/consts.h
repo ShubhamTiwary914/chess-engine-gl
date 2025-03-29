@@ -26,7 +26,7 @@
 
 
 
-#define FENstart "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+#define FENstart "rnbkqbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBKQBNR w KQkq - 0 1"
 using U64 = uint64_t;
 using U8 = uint8_t;
 

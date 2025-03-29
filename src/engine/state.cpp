@@ -12,27 +12,16 @@ void GameState::rollback_event(U8 stateID){
 }
 
 /// @brief move game state (after turn is over)
-void GameState::move_state(std::string event){
-    
+void GameState::move_state(std::string event){ 
     //turn & +1up turn
     if(this->turn == BLACK_TURN)
     this->fullMoves++;
     this->halfMoves++;
     //remove en-passant after full move since set.
     bool enPassantSide = this->get_enPassant_side();
-    if (
-        (enPassantSide == WHITE_TURN && turn == BLACK_TURN) ||
-        (enPassantSide == BLACK_TURN && turn == WHITE_TURN)
-    )
-    this->enpassant = 0;  
-     
-    // //*log
-    // std::cout << "enpassant: " << std::endl;
-    // std::cout << "Is en passant: " << this->is_enPassant() << std::endl;
-    // std::cout << "En passant Side: " << this->get_enPassant_side() << std::endl;
-    // std::cout << "File: " << this->get_enPassant_file() << std::endl;
-    // std::cout << printBitsU8(this->enpassant) << std::endl;
-
+    if ( (enPassantSide == WHITE_TURN && turn == BLACK_TURN) ||
+         (enPassantSide == BLACK_TURN && turn == WHITE_TURN) )
+        this->enpassant = 0;      
     //switch turn and add event as FEN
     this->turn = !this->turn; 
     add_eventFEN(event);

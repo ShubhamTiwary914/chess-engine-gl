@@ -221,7 +221,7 @@ std::string printBitBoard(u_int64_t testboard, std::string title, bool print, ch
     bits += "     a b c d e f g h\n\n";
     if(print){
       std::cout << bits;
-      return 0ULL;
+      return "";
     }
     return bits;
 } 

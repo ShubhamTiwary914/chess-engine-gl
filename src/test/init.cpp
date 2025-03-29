@@ -82,12 +82,8 @@ int main(int argc, char **argv){
 void check()
 {
     initializeBoard(); 
-
-    U64 occ = 0ULL; 
-    setBit(occ, a2);  setBit(occ, a6); setBit(occ, c5); setBit(occ, d5); 
-    printBitBoard(occ, "Occupancy: ");
-
-
-    U64 brd4 = getRookAttacks('a', 5, occ);
-    printBitBoard(brd4);
+    std::cout << piecesCharMap['Q'] << std::endl;
+    std::cout << piecesCharMap['q'] << std::endl;
+    std::cout << piecesCharMap['k'] << std::endl;
+    std::cout << piecesCharMap['K'] << std::endl;
 }

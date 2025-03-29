@@ -36,7 +36,7 @@ void BitBoardSet::setPiece(int pieceID, char file, int rank){
 void BitBoardSet::setPieceIndex(int pieceID, int bitIndex){
     std::stringstream error_msg;
     error_msg << "Bitindex needed range: [0,63], received: " << bitIndex;
-    BREAKPOINT(bitIndex >= 0 && bitIndex <= 63, error_msg.str());
+    BREAKPOINT(bitIndex >= 0 && bitIndex <= 63, error_msg.str()); 
     setBit(this->pieces[pieceID].board, bitIndex);
 }
 
@@ -166,7 +166,7 @@ void FENParser(std::string fenString, BitBoardSet &whiteboard, BitBoardSet &blac
         }
         else {
             // Place piece
-            if (islower(c)) 
+            if (islower(c))
                 blackboard.setPieceIndex(piecesCharMap[c], bitIndex);
             else 
                 // White piece

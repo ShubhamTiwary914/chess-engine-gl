@@ -10,6 +10,9 @@ GameState state;
 
 void initializeBoard(){
     FENParser(FENstart, whiteboard, blackboard);
+    // logger(DEBUG, "Done with FEN parsing!");
+    // printBitBoard(blackboard.getPiece(KING), "KING white: ", true, 'k');
+    // printBitBoard(blackboard.getPiece(QUEEN), "QUEEN white: ", true, 'q');
     mainboard.translateBitboard_toPieceList(whiteboard, blackboard);
     movesSet = generatePrecomputedMoves();
     initializeMagicTables();
@@ -77,15 +80,9 @@ void movePiece(char fromFile, int fromRank, char toFile,
         whiteboard.unsetPiece(attackedPieceID, toFile, toRank);
     }
 
-    logger(DEBUG, "Passant: ", state.is_enPassant());
-    logger(DEBUG, "Piece ID: ", srcPieceID);
-    logger(DEBUG, "Target ID: ", attackedPieceID);
-    logger(DEBUG, "From & To Files: ", fromFile, " ", toFile);
-
     //en-passant capture: pawn catures a empty tile in different file
     if((state.is_enPassant()) && (srcPieceID == PAWN) && (attackedPieceID == NONE) && (toFile != fromFile)){
         int passantRank = (state.turn == WHITE_TURN) ? (toRank-1) : (toRank+1);
-        logger(INFO, "Removing from: ", toFile, "", passantRank);
         (state.turn == WHITE_TURN) ? blackboard.unsetPiece(PAWN, toFile, passantRank): 
                                      whiteboard.unsetPiece(PAWN, toFile, passantRank);
         mainboard.unsetPiece(toFile, passantRank); 
