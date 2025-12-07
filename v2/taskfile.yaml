@@ -1,0 +1,27 @@
+
+version: '3'
+
+tasks:
+  setup-linux:
+    dir: ./scripts
+    desc: setup SDL2 dependencies on linux machine
+    cmds:
+      - bash -c "./sdl-install.sh"
+
+  run-game:
+    desc: run the game 
+    deps:
+      - build-game
+    cmds: 
+      - cd build && make && ./ChessEngine
+
+  build-clear:
+    desc: reset the build contents 
+    cmds: 
+      - rm -f -- ./build/* 
+
+  build-game:
+    desc: build with make
+    cmds: 
+      - rm -rf ./build/*
+      - cd build && cmake ..
