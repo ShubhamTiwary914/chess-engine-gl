@@ -46,3 +46,16 @@ TEST(BitUtils, PiecesIndexes){
     EXPECT_EQ(utils::getPieceIdx('b'), 4);
     EXPECT_EQ(utils::getPieceIdx('q'), 5);
 }
+
+TEST(BitUtils, FilesMasking){
+    uint64_t expected = 0xB5B5B5B5B5B5B5B5ULL;
+    u64 masked = utils::maskFiles({0,2,4,5,7,7});
+    EXPECT_EQ(expected, masked);
+}
+
+TEST(BitUtils, RanksMasking){
+    uint64_t expected = 0ULL;
+    u64 masked = utils::maskRanks({0,1,2,4,6,7});
+    utils::printBitBoard(masked);
+}
+

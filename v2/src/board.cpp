@@ -78,7 +78,10 @@ u64 engine::unionSideBitBoard(u64 bitboard_sidepieces[6]) {
   // TODO: check one cell doesn't have two entires -> invalid
   u64 sidebitboard = 0ULL;
   // union with biwise OR(|)
-  for (int pieceidx = 0; pieceidx < 6; pieceidx++)
+  for (int pieceidx = 0; pieceidx < 6; pieceidx++){
+    ///INFO: if called -> some overlap between pieces - two pieces in same cell? likely: FEN string invalid, bitboard unclear 
+    assert(!(sidebitboard & bitboard_sidepieces[pieceidx]));
     sidebitboard |= bitboard_sidepieces[pieceidx];
+  }
   return sidebitboard;
 }
