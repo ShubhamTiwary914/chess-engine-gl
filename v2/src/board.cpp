@@ -22,13 +22,14 @@ engine::BoardSet engine::initBoardSet(std::string fenString) {
       continue;
       // skip empty squares when /8 or /x (x=int)
     } else if (isdigit(ch)) {
-      bitidx -= (int)(ch - '0');
+      bitidx -= (ch - '0');
       fenidx++;
       continue;
     }
     // set piece in stringboard
     char piece = ch;
-    std::tie(rank, file) = utils::getBERF_rankfile(bitidx);
+    std::tie(rank, file) = utils::getLERF_rankfile(bitidx);
+    // std::cout << rank  << (char)(file+'A') << " " << piece << "\n";  
     boardset.stringboard[rank][file] = piece;
     // set piece in bitboard
     int lerfidx = utils::getLERFIndex(bitidx);
@@ -60,10 +61,13 @@ void engine::clearBoardSet(BoardSet *boardset) {
   }
 }
 
-void engine::printStringBoard(char stringboard[8][8]) {
+///@brief prints string board in LERF format
+void engine::printStringBoard_LERF(char stringboard[8][9]) {
+  int smrank, smfile;
   for (int rank = 7; rank >= 0; rank--) {
     for (int file = 0; file <= 7; file++) {
-      std::cout << stringboard[rank][file];
+      std::tie(smrank, smfile) = utils::getLERF_rankfile(rank, file);
+      std::cout << stringboard[smrank][smfile];
     }
     std::cout << std::endl;
   }

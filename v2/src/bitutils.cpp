@@ -18,20 +18,27 @@ void utils::printBitBoard(u64 bitboard) {
 ///@returns LERF index (int)
 int utils::getLERFIndex(int rank, int file) { return rank * 8 + file; }
 
+
 ///@brief Little Endian Rank-File Mapping Index (ref: docs-board.h)
 ///@param bigidx - BERF index
 ///@returns LERF index (int)
 int utils::getLERFIndex(int bigidx) {
   int rank, file;
-  std::tie(rank, file) = utils::getBERF_rankfile(bigidx);
+  std::tie(rank, file) = utils::getLERF_rankfile(bigidx);
   return rank * 8 + file;
 }
 
-///@brief from big index (63) -> map to <rank,file> of BERF mapping
-std::pair<int, int> utils::getBERF_rankfile(int bigidx) {
-  int rank = bigidx / 8;
-  int file = bigidx % 8;
+///@brief from index (63) -> map to <rank,file> of LERF mapping
+std::pair<int, int> utils::getLERF_rankfile(int smidx) {
+  int rank = smidx / 8;
+  int file = smidx % 8;
   return std::pair<int, int>(rank, file);
+}
+
+///@brief convert BERF rank,file indexes to LERF rank,file indexes
+///@returns: rank same, file is reversed: 0-7, 1-6, ...., 7-0
+std::pair<int,int> utils::getLERF_rankfile(int bigrank, int bigfile){
+  return std::pair<int,int>(bigrank, (7-bigfile));
 }
 
 bool utils::checkBit64(u64 bitboard, int idx) {
@@ -46,7 +53,7 @@ void utils::setBit64(u64 *bitboard, int idx) {
 
 ///@brief map piece char to piece index (ex: 'p' or 'P' --> 0)
 int utils::getPieceIdx(char ch) {
-  ch = tolower(ch);
+  ch = (char)tolower(ch);
   switch (ch) {
   case 'p':
     return PAWN_INDEX;

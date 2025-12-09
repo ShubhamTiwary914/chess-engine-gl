@@ -8,20 +8,48 @@ tasks:
     cmds:
       - bash -c "./sdl-install.sh"
 
-  run-game:
-    desc: run the game 
-    deps:
-      - build-game
-    cmds: 
-      - cd build && make && ./ChessEngine
-
   build-clear:
     desc: reset the build contents 
     cmds: 
+      - mkdir -p build
       - rm -f -- ./build/* 
 
-  build-game:
+  build-cmake:
     desc: build with make
     cmds: 
-      - rm -rf ./build/*
+      - mkdir -p build
       - cd build && cmake ..
+
+  rebuild-cmake:
+    desc: rebuild fresh with make
+    cmds:
+      - mkdir -p build
+      - rm -rf ./build/* && cd build && cmake ..
+
+  run-game:
+    desc: run the game 
+    deps:
+      - build-cmake
+    cmds: 
+      - cd build && make && ./ChessEngine
+      
+  run-test:
+    desc: run all unit tests
+    deps:
+      - build-cmake
+    cmds:
+      - cd build && make && ./ChessEngine_tests 
+
+  restart-test:
+    desc: run test with fresh build
+    deps:
+      - rebuild-cmake
+    cmds:
+      - task run-test
+  
+  restart-game:
+    desc: run the game with fresh build 
+    deps:
+      - rebuild-cmake
+    cmds: 
+      - task run-game
