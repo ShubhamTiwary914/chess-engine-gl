@@ -40,7 +40,7 @@ bool utils::checkBit64(u64 bitboard, int idx) {
 }
 
 void utils::setBit64(u64 *bitboard, int idx) {
-  u64 mask = 1LL << idx;
+  u64 mask = 1ULL << idx;
   *bitboard = (*bitboard) | mask;
 }
 
@@ -60,7 +60,10 @@ int utils::getPieceIdx(char ch) {
     return BISHOP_INDEX;
   case 'q':
     return QUEEN_INDEX;
-  }
+
   // TODO: assert FEN string is invalid and exit
+  default:
+    return -1;
+  }
   return -1;
 }

@@ -16,8 +16,11 @@ typedef struct {
 } BoardSet;
 
 BoardSet initBoardSet(std::string fenString = FENstartpos);
+void clearBoardSet(BoardSet *boardset);
 void printStringBoard(char stringboard[8][8]);
 u64 unionSideBitBoard(u64 bitboard_sidepieces[6]);
+
+
 
 }; // namespace engine
 

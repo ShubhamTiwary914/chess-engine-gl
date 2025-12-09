@@ -76,7 +76,7 @@ enum INDEXES {
 extern std::string FENstartpos;
 
 #define WHITE_INDEX 0
-#define BLACK_INDEX 0
+#define BLACK_INDEX 1
 
 #define PAWN_INDEX 0
 #define KNIGHT_INDEX 1

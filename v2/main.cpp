@@ -18,4 +18,4 @@ int main(int argc, char **argv) {
   utils::printBitBoard(whiteboard);
 
   return 0;
-}
+};
