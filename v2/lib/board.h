@@ -1,4 +1,5 @@
 #include "types.h"
+#include "bitutills.h"
 
 #ifndef BOARDS_H
 #define BOARDS_H
@@ -22,6 +23,8 @@ void clearBoardSet(BoardSet *boardset);
 void printStringBoard_LERF(char stringboard[8][9]);
 u64 unionSideBitBoard(u64 bitboard_sidepieces[6]);
 
+u64 getCurrentSide_bitBoard(BoardSet *boardset, int currside);
+u64 getOppsSide_bitBoard(BoardSet *boardset, int currside);
 
 
 }; // namespace engine

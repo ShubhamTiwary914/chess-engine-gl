@@ -37,6 +37,35 @@ TEST(BitUtils, SetBit64){
     }
 }
 
+///@brief substracting bits for: A - B
+TEST(BitUtils, SubtractBit64) {
+    // remove one bit
+    u64 from1    = 0b100100;
+    u64 targets1 = 0b000100;
+    EXPECT_EQ(utils::substractBit64(from1, targets1), 0b100000);
+
+    // remove multiple bits
+    u64 from2    = 0b111011;
+    u64 targets2 = 0b011001;
+    EXPECT_EQ(utils::substractBit64(from2, targets2), 0b100010);
+
+    // removing none
+    u64 from3    = 0b101010;
+    u64 targets3 = 0;
+    EXPECT_EQ(utils::substractBit64(from3, targets3), 0b101010);
+
+    // removing all
+    u64 from4    = 0xFFFFULL;
+    u64 targets4 = 0xFFFFULL;
+    EXPECT_EQ(utils::substractBit64(from4, targets4), 0ULL);
+
+    // removing bits not present in from
+    u64 from5    = 0b0011;
+    u64 targets5 = 0b1100;
+    EXPECT_EQ(utils::substractBit64(from5, targets5), 0b0011);
+}
+
+
 ///@brief ensure no indexes of pieces have been changed
 TEST(BitUtils, PiecesIndexes){
     EXPECT_EQ(utils::getPieceIdx('p'), 0);
@@ -56,6 +85,5 @@ TEST(BitUtils, FilesMasking){
 TEST(BitUtils, RanksMasking){
     uint64_t expected = 0ULL;
     u64 masked = utils::maskRanks({0,1,2,4,6,7});
-    utils::printBitBoard(masked);
 }
 

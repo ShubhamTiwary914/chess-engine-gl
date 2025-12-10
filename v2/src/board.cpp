@@ -1,6 +1,4 @@
 #include "../lib/board.h"
-#include "../lib/bitutills.h"
-#include <cctype>
 
 // INFO: default starting pos constant
 std::string FENstartpos =
@@ -84,4 +82,16 @@ u64 engine::unionSideBitBoard(u64 bitboard_sidepieces[6]) {
     sidebitboard |= bitboard_sidepieces[pieceidx];
   }
   return sidebitboard;
+}
+
+///@brief get the bitboard union for current side given whose turn it is?
+u64 engine::getCurrentSide_bitBoard(engine::BoardSet *boardset, int currside){
+  assert(currside == WHITE_INDEX || currside == BLACK_INDEX);
+  return unionSideBitBoard(boardset->bitboard[currside]);
+}
+
+///@brief get the bitboard union for current side given whose turn it is?
+u64 engine::getOppsSide_bitBoard(BoardSet *boardset, int currside){  
+  assert(currside == WHITE_INDEX || currside == BLACK_INDEX);
+  return unionSideBitBoard(boardset->bitboard[!currside]);
 }

@@ -1,5 +1,4 @@
 #include "../lib/bitutills.h"
-#include <cassert>
 
 // ==============\\
 //   INDEXES     \\
@@ -73,6 +72,13 @@ bool utils::checkBit64(u64 bitboard, int idx) {
 void utils::setBit64(u64 *bitboard, int idx) {
   u64 mask = 1ULL << idx;
   *bitboard = (*bitboard) | mask;
+}
+
+///@brief substract to get bitboardFrom - bitboardTargets (remove bits in from that are in targets)
+///@returns bitboardFrom with the removed bits present in bitboardTargets as well
+u64 utils::substractBit64(u64 bitboardFrom, u64 bitboardTargets){
+  u64 mask = ~(bitboardFrom & bitboardTargets);
+  return bitboardFrom & mask;
 }
 
 
