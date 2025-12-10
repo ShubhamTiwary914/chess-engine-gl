@@ -29,6 +29,8 @@ TEST(Board, StringBoard_Generation){
 TEST(Moves, KnightMoves_NoBlocks) {
     engine::BoardSet B;
     engine::clearBoardSet(&B);
+    engine::CachedSet cache;
+    engine::moves_precompute(&cache);
     int r = 4;
     int f = 3;
     utils::setBit64(
@@ -38,7 +40,9 @@ TEST(Moves, KnightMoves_NoBlocks) {
     engine::clearBoardSet(&B);
     utils::setBit64(&B.bitboard[WHITE_INDEX][KNIGHT_INDEX],
                     utils::getLERFIndex(r, f));
-    u64 m1 = engine::movesGeneration(&B, r, f, WHITE_INDEX, KNIGHT_INDEX);
+    // u64 m1 = engine::movesGeneration(&B, r, f, WHITE_INDEX, KNIGHT_INDEX);
+    u64 m1 = engine::moves_fastfetch(&cache, &B, r, f, 
+        WHITE_INDEX, KNIGHT_INDEX);
     u64 e1 =
         (1ULL << utils::getLERFIndex(6,4)) |
         (1ULL << utils::getLERFIndex(6,2)) |
@@ -47,8 +51,8 @@ TEST(Moves, KnightMoves_NoBlocks) {
         (1ULL << utils::getLERFIndex(3,5)) |
         (1ULL << utils::getLERFIndex(3,1)) |
         (1ULL << utils::getLERFIndex(2,4)) |
-        (1ULL << utils::getLERFIndex(2,2));
-    
+        (1ULL << utils::getLERFIndex(2,2)); 
+
     EXPECT_EQ(m1, e1); 
 }
 
@@ -56,7 +60,9 @@ TEST(Moves, KnightMoves_SidePiecesBlock){
     engine::BoardSet B;
     engine::clearBoardSet(&B);
     engine::clearBoardSet(&B); 
-    int r = 4, f = 3;
+    int r = 4, f = 3; 
+    engine::CachedSet cache;
+    engine::moves_precompute(&cache);
 
     utils::setBit64(&B.bitboard[WHITE_INDEX][KNIGHT_INDEX],
                     utils::getLERFIndex(r, f));
@@ -64,7 +70,7 @@ TEST(Moves, KnightMoves_SidePiecesBlock){
                     utils::getLERFIndex(6,4));
     utils::setBit64(&B.bitboard[WHITE_INDEX][PAWN_INDEX],
                     utils::getLERFIndex(3,1));
-    u64 m2 = engine::movesGeneration(&B, r, f, WHITE_INDEX, KNIGHT_INDEX);
+    u64 m2 = engine::moves_fastfetch(&cache, &B, r, f, WHITE_INDEX, KNIGHT_INDEX);
     u64 e2 =
         (1ULL << utils::getLERFIndex(6,2)) |
         (1ULL << utils::getLERFIndex(5,5)) |

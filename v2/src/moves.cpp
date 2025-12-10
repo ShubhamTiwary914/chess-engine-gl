@@ -1,64 +1,92 @@
 #include "../lib/moves.h"
 
+//constants - directions for jump pieces
 int engine::knightDirectionsCount = 8;
 int engine::knightDirections[8] = {
     15, 17, 6, 10,
     -15, -17, -6, -10
 };
 
-///@brief given current board condirtion --> generate moves possible for piece at pos:(rank,file) with side
-///@param boardset current boardset struct ref
-///@param side WHITE_SIDE or BLACK_SIDE?
-///@param pieceidx (like PAWN_INDEX, ROOK_INDEX)
-u64 engine::movesGeneration(engine::BoardSet *boardset, int rank, int file, int side, int pieceidx){
-    assert(pieceidx>=0 && pieceidx<=6); 
-    switch(pieceidx){
-        case PAWN_INDEX:
-            return engine::pawnMovesGeneration(boardset, rank, file, side);
-        case KNIGHT_INDEX:
-            return engine::knightMovesGeneration(boardset, rank, file, side);
-        case KING_INDEX:
-            return engine::kingMovesGeneration(boardset, rank, file, side);
-        default:
-            return 0ULL;
-    }
-    return 0ULL;
+///@brief given current board condirtion --> generate moves possible for all pieces on the CachedSet
+///@param cache store for all precomputed moves;
+void engine::moves_precompute(engine::CachedSet *cache){
+    //mark uncached first (except pawn, no cache needed)
+    for(int pieceidx=0; pieceidx<6; pieceidx++)
+        cache->isCached[pieceidx]=false;
+    cache->isCached[PAWN_INDEX]=true;
+    //jumping pieces: don't care about blockers
+    engine::kingMoves_precompute(cache);
+    engine::knightMoves_precompute(cache); 
+    //sliding pieces: care about blockers
 }
 
-// ===================\/
-//   JUMPING PIECES   \/ 
-// ===================\/
-//Jumping pieces: pawn,king, knight are generated at run-time in O(1), no precomp
 
-///@brief moves generation for pawn - attack, move, en-passant conditions
-u64 engine::pawnMovesGeneration(engine::BoardSet *boardset, int rank, int file, int currside){
-    return 0ULL;
-}
+// =========================\/
+//   MOVES PRE-COMPUTATION  \/ 
+// =========================\/
+///Storing moves in CachedSet for O(1) calls during runtime (except pawn special case)
+///@brief moves generation for king (8 adjacent sides)
+void engine::kingMoves_precompute(engine::CachedSet *cache){
 
-///brief moves generation for king (8 adjacent sides)
-u64 engine::kingMovesGeneration(engine::BoardSet *boardset, int rank, int file, int currside){
-    return 0ULL;
 }
 
 ///@brief moves generation for knight (8 cells, 2 step in one dirn., then 1 step left/right) 
-u64 engine::knightMovesGeneration(engine::BoardSet *boardset, int rank, int file, int currside){
-    u64 oppsSideBitBoard = engine::getOppsSide_bitBoard(boardset, currside);
-    u64 currentSideBitBoard = engine::getCurrentSide_bitBoard(boardset, currside);
-    u64 moves = 0ULL;
-    //mark cells where the knight attackable cells are in bounds 
-    for(int idx=0; idx<engine::knightDirectionsCount; idx++){
-        int bitidx = utils::getLERFIndex(rank, file);
-        int newidx = bitidx + engine::knightDirections[idx];
-        if(newidx>=0 && newidx<=63){
-            utils::setBit64(&moves, newidx);
+void engine::knightMoves_precompute(engine::CachedSet *cache){
+    for(int rank=7; rank>=0; rank--){
+        for(int file=0; file<=7; file++){
+            u64 moves = 0ULL;
+            int bitidx = utils::getLERFIndex(rank, file);
+            //mark cells where the knight attackable cells(8 possible ones) are in bounds 
+            for(int diridx=0; diridx<engine::knightDirectionsCount; diridx++){
+                int newidx = bitidx + engine::knightDirections[diridx];
+                if(newidx>=0 && newidx<=63){
+                    utils::setBit64(&moves, newidx);
+                }
+            }
+            cache->knight[bitidx] = moves;
         }
     }
-    //can't attack same side pieces
-    return utils::substractBit64(moves, currentSideBitBoard);
+    cache->isCached[KNIGHT_INDEX]=true;
 }
 
-// ===================\\
-//   SLIDING PIECES   \\
-// ===================\/
-//Sliding pieces: rook,bishop,queen(OR combined of r,b) are generated at compile-time ~O(n^3), precomp O(1)
+// ========================\\
+//   MOVES RUNTIME FETCH   \\
+// ========================\/
+///Fetching cached move from CachedSet + Filtering moves (based on piece properties)  
 
+u64 engine::moves_fastfetch(CachedSet *cache, BoardSet *board, int rank, int file, int sideidx, int pieceidx){
+    //valid piece index + is pre-computed moves for that piece
+    assert(pieceidx>=0 && pieceidx<=6);
+    assert(cache->isCached[pieceidx]);
+    u64 moves = 0ULL;
+    switch (pieceidx) {
+        case PAWN_INDEX:
+            moves = pawnMoves_fastfetch(cache, board, rank, file, sideidx);
+            break;
+        case KNIGHT_INDEX:
+            moves = knightMoves_fastfetch(cache, board, rank, file, sideidx);
+            break;
+        case KING_INDEX:
+            moves = kingMoves_fastfetch(cache, board, rank, file, sideidx);
+            break;
+        default:
+            return 0ULL;
+    }
+    //all pieces can't attack same side piece
+    moves  = utils::substractBit64(moves, 
+        unionSideBitBoard(board->bitboard[sideidx]));
+    return moves;
+}
+
+u64 engine::pawnMoves_fastfetch(CachedSet *cache, BoardSet *board, int rank, int file, int sideidx){
+    return 0ULL;
+}
+
+u64 engine::knightMoves_fastfetch(CachedSet *cache, BoardSet *board, int rank, int file, int sideidx){
+    int bitidx = utils::getLERFIndex(rank, file);
+    return cache->knight[bitidx];
+}
+
+u64 engine::kingMoves_fastfetch(CachedSet *cache, BoardSet *board, int rank, int file, int sideidx){
+    return 0ULL;
+}

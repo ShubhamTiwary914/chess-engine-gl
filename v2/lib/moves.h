@@ -1,4 +1,5 @@
 #include "board.h"
+#include "state.h"
 
 namespace engine{
 
@@ -6,12 +7,14 @@ extern int knightDirectionsCount;
 extern int knightDirections[8];
 
 
-u64 movesGeneration(engine::BoardSet *boardset, int rank, int file, int side, int pieceidx);
+void moves_precompute(CachedSet *cache);
+void kingMoves_precompute(CachedSet *cache);
+void knightMoves_precompute(CachedSet *cache);
 
-u64 pawnMovesGeneration(engine::BoardSet *boardset, int rank, int file, int currside);
-u64 kingMovesGeneration(engine::BoardSet *boardset, int rank, int file, int currside);
-u64 knightMovesGeneration(engine::BoardSet *boardset, int rank, int file, int currside);
+u64 moves_fastfetch(CachedSet *cache, BoardSet *board, int rank, int file, int sideidx, int pieceidx);
 
-
+u64 pawnMoves_fastfetch(CachedSet *cache, BoardSet *board, int rank, int file, int sideidx);
+u64 knightMoves_fastfetch(CachedSet *cache, BoardSet *board, int rank, int file, int sideidx);
+u64 kingMoves_fastfetch(CachedSet *cache, BoardSet *board, int rank, int file, int sideidx);
 
 }
