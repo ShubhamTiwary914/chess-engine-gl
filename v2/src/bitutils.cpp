@@ -60,6 +60,22 @@ int utils::getPieceIdx(char ch) {
 }
 
 
+///@brief bitboard with 1 bit set -> find that bit's (rank,file)
+std::pair<int,int> utils::fetchSinglebit_rankfile(u64 board){
+  //only 1 set bit
+  assert(__builtin_popcountll(board) == 1);
+  int berfidx = __builtin_ctzll(board);
+  int lerfidx = getLERFIndex(berfidx);
+  return getLERF_rankfile(lerfidx);
+}
+
+///@brief bitboard with 1 bit set --> find that bit's LERF index
+int utils::fetchSinglebit_bitidx(u64 board){
+  int rank, file;
+  std::tie(rank,file) = utils::fetchSinglebit_rankfile(board);
+  return getLERFIndex(rank, file);
+}
+
 // ==============\\
 //   BIT OPS     \\
 // ==============\/
@@ -80,7 +96,6 @@ u64 utils::substractBit64(u64 bitboardFrom, u64 bitboardTargets){
   u64 mask = ~(bitboardFrom & bitboardTargets);
   return bitboardFrom & mask;
 }
-
 
 
 // ==============\/

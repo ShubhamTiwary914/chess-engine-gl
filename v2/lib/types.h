@@ -114,4 +114,11 @@ extern u64 MASK_DARKSQUARES;
 extern u64 DIAGONAL_A1_H8;
 extern u64 DIAGONAL_H1_A8;
 
+
+//macros for debugging -----------
+
+///@brief print bit board with message
+#define bbdebug(msg,board) std::cout<<"\n" << msg << "\n"; utils::printBitBoard(board);
+
+
 #endif

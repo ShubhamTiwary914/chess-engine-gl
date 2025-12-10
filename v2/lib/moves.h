@@ -6,6 +6,15 @@ namespace engine{
 extern int knightDirectionsCount;
 extern int knightDirections[8];
 
+extern int kingDirectionsCount;
+extern int kingDirections[8];
+
+extern int pawnMoveDirection[2];
+extern int pawnStarterJumpDirection[2];
+extern int pawnStarterRank[2];
+extern int pawnAttackDirectionsCount;
+extern int pawnAttackDirections[2][2];
+
 
 void moves_precompute(CachedSet *cache);
 void kingMoves_precompute(CachedSet *cache);

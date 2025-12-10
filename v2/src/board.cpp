@@ -73,7 +73,6 @@ void engine::printStringBoard_LERF(char stringboard[8][9]) {
 
 ///@brief make union of one side, white or black to get full side bitboard
 u64 engine::unionSideBitBoard(u64 bitboard_sidepieces[6]) {
-  // TODO: check one cell doesn't have two entires -> invalid
   u64 sidebitboard = 0ULL;
   // union with biwise OR(|)
   for (int pieceidx = 0; pieceidx < 6; pieceidx++){
