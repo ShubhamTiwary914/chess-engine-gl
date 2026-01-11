@@ -105,12 +105,18 @@ u64 utils::substractBit64(u64 bitboardFrom, u64 bitboardTargets){
 ///(assumes LERF bitboard)
 void utils::printBitBoard(u64 bitboard) {
   for (int rank = 7; rank >= 0; rank--) {
+    std::cout << (rank+1) << " ";
     for (int file = 0; file < 8; file++) {
       int idx = utils::getLERFIndex(rank, file);
       std::cout << (int)checkBit64(bitboard, idx);
     }
     std::cout << '\n';
   }
+  std::cout<<"  ";
+  for(char file='a'; file<='h'; file++){
+    std::cout << file;
+  }
+  std::cout<<'\n';
 }
 
 
@@ -118,7 +124,6 @@ void utils::printBitBoard(u64 bitboard) {
 // ==============\\
 //   BIT-MASKS   \\
 // ==============\/
-
 ///@brief mask the {f1,f2,...,fn} files (LERF)
 ///@param bigfiles: files needed from normal chessboard POV(a to h) as (0 to 7)
 u64 utils::maskFiles(std::vector<int> bigfiles){
@@ -139,4 +144,43 @@ u64 utils::maskRanks(std::vector<int> ranks){
     masked |= (RANK_1_BITS << (1ULL)*(rank*8));
   }
   return masked;
+}
+
+
+// ===================\\
+//   BITRAY-GENERATION  \\
+// ====================\/
+
+///@brief generates ray cast for the file - horizontal 
+///@param blockersMasked: assumes that the target board is masked to have only that file remaining
+u64 utils::rayBrute_file(u64 blockersMasked, int smrank, int smfile){
+  int baseBitIdx = utils::getLERFIndex(smfile, smrank);
+  u64 resBoard = 0ULL;
+  //cast down (move rank down, file is fixed)
+  for(int rankidx=smrank-1; rankidx>=0; rankidx--){
+    int idx = utils::getLERFIndex(rankidx, smfile);
+    utils::setBit64(&resBoard, idx);
+    if(utils::checkBit64(blockersMasked, idx))
+      break;
+  }
+  //cast up (move rank up, file is fixed)
+  for(int rankidx=smrank+1; rankidx<=7; rankidx++){
+    int idx = utils::getLERFIndex(rankidx, smfile);
+    utils::setBit64(&resBoard, idx);
+    if(utils::checkBit64(blockersMasked, idx))
+      break;
+  }
+  return resBoard;
+}
+
+u64 utils::rayBrute_file(u64 blockersMasked, int smidx){
+  int smrank, smfile;
+  std::tie(smrank, smfile) = utils::getLERF_rankfile(smidx);
+  return utils::rayBrute_file(blockersMasked, smrank, smfile);
+}
+
+
+///@brief generates ray cast for the rank - horizontal (assumes that the target board is masked to have only that rank remaining)
+u64 utils::rayBrute_rank(u64 blockersMasked, int smrank, int smfile){
+  return 0ULL;
 }

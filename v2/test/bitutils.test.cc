@@ -87,3 +87,23 @@ TEST(BitUtils, RanksMasking){
     u64 masked = utils::maskRanks({0,1,2,4,6,7});
 }
 
+
+TEST(BitUtils, RayBrute_file){
+    u64 targetBoard = 0ULL;
+    utils::setBit64(&targetBoard, b1);
+    utils::setBit64(&targetBoard, b3);
+    utils::setBit64(&targetBoard, b6);
+    utils::setBit64(&targetBoard, b7);
+    utils::setBit64(&targetBoard, b8);
+    
+    u64 resBoard = utils::rayBrute_file(targetBoard, b5);
+    u64 expected = 0ULL;
+    utils::setBit64(&expected,  b3);
+    utils::setBit64(&expected,  b4);
+    utils::setBit64(&expected,  b6);
+    EXPECT_EQ(resBoard, expected);
+}
+
+TEST(BitUtils, RayBrute_rank){
+    
+}
