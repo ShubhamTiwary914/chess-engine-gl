@@ -101,9 +101,24 @@ TEST(BitUtils, RayBrute_file){
     utils::setBit64(&expected,  b3);
     utils::setBit64(&expected,  b4);
     utils::setBit64(&expected,  b6);
+    
     EXPECT_EQ(resBoard, expected);
 }
 
 TEST(BitUtils, RayBrute_rank){
-    
+    u64 targetBoard = 0ULL;
+    utils::setBit64(&targetBoard, a5);
+    utils::setBit64(&targetBoard, g5);
+    utils::setBit64(&targetBoard, h5);
+
+    u64 resBoard = utils::rayBrute_rank(targetBoard, c5);
+    u64 expected = 0ULL;
+    utils::setBit64(&expected,  b5);
+    utils::setBit64(&expected,  d5);
+    utils::setBit64(&expected,  e5);
+    utils::setBit64(&expected,  f5);
+    utils::setBit64(&expected,  a5);
+    utils::setBit64(&expected,  g5);
+
+    EXPECT_EQ(resBoard, expected);
 }

@@ -154,7 +154,6 @@ u64 utils::maskRanks(std::vector<int> ranks){
 ///@brief generates ray cast for the file - horizontal 
 ///@param blockersMasked: assumes that the target board is masked to have only that file remaining
 u64 utils::rayBrute_file(u64 blockersMasked, int smrank, int smfile){
-  int baseBitIdx = utils::getLERFIndex(smfile, smrank);
   u64 resBoard = 0ULL;
   //cast down (move rank down, file is fixed)
   for(int rankidx=smrank-1; rankidx>=0; rankidx--){
@@ -182,5 +181,27 @@ u64 utils::rayBrute_file(u64 blockersMasked, int smidx){
 
 ///@brief generates ray cast for the rank - horizontal (assumes that the target board is masked to have only that rank remaining)
 u64 utils::rayBrute_rank(u64 blockersMasked, int smrank, int smfile){
-  return 0ULL;
+  u64 resBoard = 0ULL;
+  //cast left (move file left, rank fixed)
+  for(int fileidx=smfile-1; fileidx>=0; fileidx--){
+    int idx = utils::getLERFIndex(smrank, fileidx);
+    utils::setBit64(&resBoard, idx);
+    if(utils::checkBit64(blockersMasked, idx))
+      break;
+  }
+  //cast left (move file right, rank fixed)
+  for(int fileidx=smfile+1; fileidx<=7; fileidx++){
+    int idx = utils::getLERFIndex(smrank, fileidx);
+    utils::setBit64(&resBoard, idx);
+    if(utils::checkBit64(blockersMasked, idx))
+      break;
+  }
+  return resBoard;
+}
+
+
+u64 utils::rayBrute_rank(u64 blockersMasked, int smidx){
+  int smrank, smfile;
+  std::tie(smrank, smfile) = utils::getLERF_rankfile(smidx);
+  return utils::rayBrute_rank(blockersMasked, smrank, smfile);
 }

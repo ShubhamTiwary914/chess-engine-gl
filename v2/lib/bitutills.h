@@ -29,8 +29,9 @@ u64 maskFiles(std::vector<int> bigfiles);
 //rays brute force
 u64 rayBrute_file(u64 blockersMasked, int smrank, int smfile);
 u64 rayBrute_file(u64 blockersMasked, int smidx);
-
 u64 rayBrute_rank(u64 blockersMasked, int smrank, int smfile);
+u64 rayBrute_rank(u64 blockersMasked, int smidx);
+
 u64 rayBrute_diagonal(u64 blockersMasked, int smrank, int smfile); // (direction: / )
 u64 rayBrute_antidiagonal(u64 blockersMasked, int smrank, int smfile); // (direction: \ )
 
