@@ -150,7 +150,6 @@ u64 utils::maskRanks(std::vector<int> ranks){
 // ===================\\
 //   BITRAY-GENERATION  \\
 // ====================\/
-
 ///@brief generates ray cast for the file - horizontal 
 ///@param blockersMasked: assumes that the target board is masked to have only that file remaining
 u64 utils::rayBrute_file(u64 blockersMasked, int smrank, int smfile){
@@ -204,4 +203,70 @@ u64 utils::rayBrute_rank(u64 blockersMasked, int smidx){
   int smrank, smfile;
   std::tie(smrank, smfile) = utils::getLERF_rankfile(smidx);
   return utils::rayBrute_rank(blockersMasked, smrank, smfile);
+}
+
+///@brief generates ray cast for diagonal - forward slash direction
+///@param blockersMasked assumed blockers where only blockers in that diag exists, nothing else
+u64 utils::rayBrute_diagonal(u64 blockersMasked, int smrank, int smfile){ // (direction: / )
+  u64 resBoard = 0ULL;
+  //cast top right(both rank, file moves+1)
+  for(int ctr=1; ctr<8;ctr++){
+    int rank=smrank+ctr, file=smfile+ctr;
+    if(rank>7 || file>7)
+      break;
+    int idx = utils::getLERFIndex(rank, file);
+    utils::setBit64(&resBoard, idx);
+    if(utils::checkBit64(blockersMasked, idx))
+      break;
+  }
+  //cast down left(both rank,file moves-1)
+  for(int ctr=1; ctr<8;ctr++){
+    int rank=smrank-ctr, file=smfile-ctr;
+    if(rank>7 || file>7)
+      break;
+    int idx = utils::getLERFIndex(rank, file);
+    utils::setBit64(&resBoard, idx);
+    if(utils::checkBit64(blockersMasked, idx))
+      break;
+  }
+  return resBoard;
+}
+
+u64 utils::rayBrute_diagonal(u64 blockersMasked, int smidx){ // (direction: \ )
+  int smrank, smfile;
+  std::tie(smrank, smfile) = utils::getLERF_rankfile(smidx);
+  return utils::rayBrute_diagonal(blockersMasked, smrank, smfile);
+} 
+
+///@brief generates ray cast for diagonal - forward slash direction
+///@param blockersMasked assumed blockers where only blockers in that diag exists, nothing else
+u64 utils::rayBrute_antidiagonal(u64 blockersMasked, int smrank, int smfile){
+  u64 resBoard = 0ULL;
+  //cast top left(rank++, file--)
+  for(int ctr=1; ctr<8;ctr++){
+    int rank=smrank+ctr, file=smfile-ctr;
+    if(rank>7 || file<0)
+      break;
+    int idx = utils::getLERFIndex(rank, file);
+    utils::setBit64(&resBoard, idx);
+    if(utils::checkBit64(blockersMasked, idx))
+      break;
+  }
+  //cast down right(rank--, file++)
+  for(int ctr=1; ctr<8;ctr++){
+    int rank=smrank-ctr, file=smfile+ctr;
+    if(rank<0 || file>7)
+      break;
+    int idx = utils::getLERFIndex(rank, file);
+    utils::setBit64(&resBoard, idx);
+    if(utils::checkBit64(blockersMasked, idx))
+      break;
+  }
+  return resBoard;
+}
+
+u64 utils::rayBrute_antidiagonal(u64 blockersMasked, int smidx){ // (direction: \ )
+  int smrank, smfile;
+  std::tie(smrank, smfile) = utils::getLERF_rankfile(smidx);
+  return utils::rayBrute_antidiagonal(blockersMasked, smrank, smfile);
 }

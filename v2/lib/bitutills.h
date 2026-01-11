@@ -33,7 +33,9 @@ u64 rayBrute_rank(u64 blockersMasked, int smrank, int smfile);
 u64 rayBrute_rank(u64 blockersMasked, int smidx);
 
 u64 rayBrute_diagonal(u64 blockersMasked, int smrank, int smfile); // (direction: / )
+u64 rayBrute_diagonal(u64 blockersMasked, int smidx); // (direction: / )
 u64 rayBrute_antidiagonal(u64 blockersMasked, int smrank, int smfile); // (direction: \ )
+u64 rayBrute_antidiagonal(u64 blockersMasked, int smidx); // (direction: \ )
 
 
 }; // namespace utils

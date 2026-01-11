@@ -101,7 +101,7 @@ TEST(BitUtils, RayBrute_file){
     utils::setBit64(&expected,  b3);
     utils::setBit64(&expected,  b4);
     utils::setBit64(&expected,  b6);
-    
+
     EXPECT_EQ(resBoard, expected);
 }
 
@@ -119,6 +119,40 @@ TEST(BitUtils, RayBrute_rank){
     utils::setBit64(&expected,  f5);
     utils::setBit64(&expected,  a5);
     utils::setBit64(&expected,  g5);
+
+    EXPECT_EQ(resBoard, expected);
+}
+
+TEST(BitUtils, RayBrute_diagFwdslash){
+    u64 targetBoard = 0ULL;
+    utils::setBit64(&targetBoard, b2);
+    utils::setBit64(&targetBoard, f6);
+    utils::setBit64(&targetBoard, g7);
+
+    u64 resBoard = utils::rayBrute_diagonal(targetBoard, d4);
+    u64 expected = 0ULL;
+    utils::setBit64(&expected, c3);
+    utils::setBit64(&expected, b2);
+    utils::setBit64(&expected, e5);
+    utils::setBit64(&expected, f6);
+
+    EXPECT_EQ(resBoard, expected);
+}
+
+
+TEST(BitUtils, RayBrute_diagBackslash){
+    u64 targetBoard = 0ULL;
+    utils::setBit64(&targetBoard, b6);
+    utils::setBit64(&targetBoard, f2);
+    utils::setBit64(&targetBoard, g1);
+
+    u64 resBoard = utils::rayBrute_antidiagonal(targetBoard, d4);
+
+    u64 expected = 0ULL;
+    utils::setBit64(&expected, c5);
+    utils::setBit64(&expected, b6);
+    utils::setBit64(&expected, e3);
+    utils::setBit64(&expected, f2);
 
     EXPECT_EQ(resBoard, expected);
 }
